@@ -6,9 +6,12 @@ output: html_document
 ---
 #Example cases
 
+In this section, a few case files will be presented, along with notes on their structure and usage of most popular functions. All of them(and some others) can be found in `TCLB/examples` catalogue(TODO: powrzucać te przykłady).
+
 ##Simple case
 
 Below is presented a simple 3-Dimensional case, with a ball in the middle of the domain. Velocity inlet is used on one side and pressure outlet on the another one(TODO:Orientacja NEWS). Notice how each dimension of the ball is specified in different way, yet it is still placed exactly in the middle of the domain:
+
 ```xml
 <?xml version="1.0"?>
 <CLBConfig version="2.0" output="output/test">
@@ -28,9 +31,9 @@ Below is presented a simple 3-Dimensional case, with a ball in the middle of the
     <Solve Iterations="1000"/>
 </CLBConfig>
 ```
+Note: It is not necessary to specify `<Box nx="1">` for Inlet/Outlet, as it is default value. 
 
-
-##Gauge
+##Defining Units
 
 ```xml
 <?xml version="1.0"?>
@@ -39,7 +42,7 @@ Below is presented a simple 3-Dimensional case, with a ball in the middle of the
         <Params Velocity="1m/s" gauge="0.1"/>
         <Params Viscosity="0.01m2/s" gauge="0.01"/>
     </Units>
-    <Geometry nx="128" ny="128" nz="128">
+    <Geometry nx="12.8m" ny="12.8m" nz="12.8m">
         <MRT><Box/></MRT>
         <WVelocity name="Inlet"><Box nx="1"/></WVelocity>
         <EPressure><Box dx="-1"/></EPressure>
@@ -56,9 +59,11 @@ Below is presented a simple 3-Dimensional case, with a ball in the middle of the
 </CLBConfig>
 
 ```
-Sets units in such a way that real-world units agree with LB units. Here $1m = 1/0.1=10$, which means that each meter is equal to 10 elements in grid and $0.01[\frac{m^2}{s}]  = \frac{0.01}{0.01} = 1 => 1 Iteration[s] = \frac{1}/{10^2}$, so 1s is equal to 100 iterations. 
+Sets units in such a way that real-world units agree with LB units. Here $1m = 1/0.1=10$, which means that each meter is equal to 10 elements in grid and $0.01[\frac{m^2}{s}]  = \frac{0.01}{0.01} = 1 => 1 Iteration[s] = \frac{1}{10^2}$, so 1 second in real world is equal to 100 iterations. 
 
-Notice how parameters in `<Model>` are specified and how generated case is the same as in previous example.
+Notice how parameters in `<Model>` and `Geometry` are specified and how generated case is the same as in previous example.
+
+It is important not to over-construct gauge variables. If `<Params Size="1m" gauge = "10"/>` would be added to the example above it would result in an error, as too many gauge gauges would be assigned.
 
 ##Control elements
 
@@ -88,8 +93,44 @@ Notice how parameters in `<Model>` are specified and how generated case is the s
 ```
 Changes `Velocity` according to the contents of `file.csv`. Here column 'x' is used to compute time and 'y' is used to calculate 'Velocity' value. Notice also that `Velocity` and `nu` parameters are given in `<Model>` container, without the need of creating separate tags for each parameter.
 
-  defined within `Dynamics.R`.
+##Importing geometry
 
+It is possible to import geometry from `.stl` files. It can be done by using `<STL file="path_to_file"/>`. Additional arguments allow user to resize, rotate, and translate geometry. ParaView(TODO: podlinkować odpowiedni podrozdział) can open `.stl` files and provides a fast way of estabilishing correct import parameters. Imported geometry can be used along with geometry primitives, shown in other examples.
+
+```xml
+<?xml version="1.0"?>
+<CLBConfig version="2.0" output="output/">
+        <Units>
+                <Params size="1m" gauge="70" />
+                <Params nu="1.4e-5m2/s" gauge="0.0001"/>  (TODO: nie działa jak usunie wpisze się w jednym <Params/> - dlaczego?)
+        </Units>
+        <Geometry nx="6m" ny="1m" nz="1m">
+                <MRT><Box/></MRT>
+                <WVelocity><Inlet/></WVelocity>
+                <EPressure><Outlet/></EPressure>
+                <Wall mask="ALL">
+                        <Channel/>
+                        <STL file="example/data/ahmed.stl" scale="1mm" Xrot="-90d" x="70" y="5cm" z="0.5m" side = "out"/>
+                </Wall>
+        </Geometry>
+        <Model>
+                <Params Velocity="0.01"/>
+        </Model>
+        <VTK Iterations="1000"/>
+        <Solve Iterations="10000"/>
+</CLBConfig>
+```
+Attribute       | Comment
+----------      | ---------------------------------------------------------------------------------------------------------------------------------------------------
+`scale`         | Used to resize `.stl` file, can be specified with units, or as a fraction(e.g. 1/100).
+`Xrot,Yrot,Zrot`| Rotates geometry aroun X/Y/Z axis by given amount in degrees.
+`x,y,z`         | Translates geometry along X/Y/Z axis  by given amount.  Distance can be specified in real-world units or number of grid points(without unit).
+`side`          | Chose if geometry will be treated as wall, possible arguments: `"in"`,`"out"` 
+
+
+##Symmetry
+
+TODO:ustalić jak było z przesunięciem przy symetri, czy ma ona być na ostatnim elemencie ciała czy jedno za nim. 
 
 ##Synthetic Turbulence
 
@@ -124,20 +165,16 @@ It is important to remember that in order to use implemented turbulence generato
 
 
 
- Attribute | Comment 
- ------- | ------------------------------ 
- `Modes=` | Number of harmonic modes to generate for the turbulence, default '100'.
- `Spread=` | The way to divide the spectrum to a finite number of modes. Possible values: `Even`, `Log`, `Quantile`. Default is `Even`.
- `Spectrum=` | Type of spectrum to use, possible values: `Von Karman`, `One Wave`. Default is `Von Karman` 
- `MainWaveLength=` | Main wave-length in the Von Karman spectrum.
- `DiffusionWaveLength=` | Diffusion scale wave-length in the Von Karman spectrum.
- `MinWaveLength=` | Minimal space wave-length. TODO:Default value
- `MaxWaveLength=` | Maximal space wave-length.
- `TimeWaveLength=` | Time wave-length of the syntetic turbulence.
+ Attribute              | Comment 
+ -------                | ----------------------------------------------------------- 
+ `Modes`                | Number of harmonic modes to generate for the turbulence, default '100'.
+ `Spread`               | The way to divide the spectrum to a finite number of modes. Possible values: `Even`, `Log`, `Quantile`. Default is `Even`.
+ `Spectrum`             | Type of spectrum to use, possible values: `Von Karman`, `One Wave`. Default is `Von Karman`.
+ `MainWaveLength`       | Main wave-length in the Von Karman spectrum.
+ `DiffusionWaveLength`  | Diffusion scale wave-length in the Von Karman spectrum.
+ `MinWaveLength`        | Minimal space wave-length. TODO:Default value
+ `MaxWaveLength`        | Maximal space wave-length.
+ `TimeWaveLength`       | Time wave-length of the syntetic turbulence.
  
  It is possible to specify `WaveLength` parameters in terms of `WaveNumber` or `WaveFrequency`. 
 
-
-##Symmetry
-
-TODO:ustalić jak było z przesunięciem przy symetri, czy ma ona być na ostatnim elemencie ciała czy jedno za nim. 
