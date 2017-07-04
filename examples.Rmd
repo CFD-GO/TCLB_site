@@ -1,0 +1,143 @@
+---
+title: "Examples"
+author: "Paweł Obrępalski"
+date: "July 4, 2017"
+output: html_document
+---
+#Example cases
+
+##Simple case
+
+Below is presented a simple 3-Dimensional case, with a ball in the middle of the domain. Velocity inlet is used on one side and pressure outlet on the another one(TODO:Orientacja NEWS). Notice how each dimension of the ball is specified in different way, yet it is still placed exactly in the middle of the domain:
+```xml
+<?xml version="1.0"?>
+<CLBConfig version="2.0" output="output/test">
+    <Geometry nx="128" ny="128" nz="128">
+        <MRT><Box/></MRT>
+        <WVelocity name="Inlet"><Box nx="1"/></WVelocity>
+        <EPressure><Box dx="-1"/></EPressure>
+        <Wall mask = "ALL">
+            <Sphere dx="54" nx="20" dy="54" fy="74" dz="-74" nz="20"/>
+        </Wall>
+    </Geometry>
+    <Model>
+        <Params Velocity-Inlet="0.1"/>
+        <Params nu="0.05"/>
+    </Model>
+    <VTK Iterations="100" what = "U,P"/>
+    <Solve Iterations="1000"/>
+</CLBConfig>
+```
+
+
+##Gauge
+
+```xml
+<?xml version="1.0"?>
+<CLBConfig version="2.0" output="output/test">
+    <Units>
+        <Params Velocity="1m/s" gauge="0.1"/>
+        <Params Viscosity="0.01m2/s" gauge="0.01"/>
+    </Units>
+    <Geometry nx="128" ny="128" nz="128">
+        <MRT><Box/></MRT>
+        <WVelocity name="Inlet"><Box nx="1"/></WVelocity>
+        <EPressure><Box dx="-1"/></EPressure>
+        <Wall mask = "ALL">
+            <Sphere dx="54" nx="20" dy="54" fy="74" dz="-74" nz="20"/>
+        </Wall>
+    </Geometry>
+    <Model>
+        <Params Velocity-Inlet="1m/s"/>
+        <Params nu="0.05m2/s"/>
+    </Model>
+    <VTK Iterations="100" what = "U,P"/>
+    <Solve Iterations="1000"/>
+</CLBConfig>
+
+```
+Sets units in such a way that real-world units agree with LB units. Here $1m = 1/0.1=10$, which means that each meter is equal to 10 elements in grid and $0.01[\frac{m^2}{s}]  = \frac{0.01}{0.01} = 1 => 1 Iteration[s] = \frac{1}/{10^2}$, so 1s is equal to 100 iterations. 
+
+Notice how parameters in `<Model>` are specified and how generated case is the same as in previous example.
+
+##Control elements
+
+```xml
+<?xml version="1.0"?>
+<CLBConfig version="2.0" output="output/test">
+    <Geometry nx="128" ny="128" nz="128">
+        <MRT><Box/></MRT>
+        <WVelocity name="Inlet"><Box nx="1"/></WVelocity>
+        <EPressure><Box dx="-1"/></EPressure>
+        <Wall mask = "ALL">
+            <Sphere dx="54" nx="20" dy="54" fy="74" dz="-74" nz="20"/>
+        </Wall>
+    </Geometry>
+    <Model>
+        <Params Velocity-Inlet="0.1"
+                nu="0.05"/>
+    </Model>
+    <VTK Iterations="100" what = "U,P"/>
+    <Solve Iterations="1000"/>
+    <Control Iterations="1000">
+        <CSV file="file.csv" Time="x*1000">
+        <Params Velocity="y*0.02+0.05"/>
+    </CSV>
+</Control>
+</CLBConfig>
+```
+Changes `Velocity` according to the contents of `file.csv`. Here column 'x' is used to compute time and 'y' is used to calculate 'Velocity' value. Notice also that `Velocity` and `nu` parameters are given in `<Model>` container, without the need of creating separate tags for each parameter.
+
+  defined within `Dynamics.R`.
+
+
+##Synthetic Turbulence
+
+A synthetic turbulence generator is implemented in TCLB solver. It is based on modified von Karman-Pao spectrum([Bailly and Juve, 1999](https://arc.aiaa.org/doi/10.2514/6.1999-1872)) 
+```xml
+<?xml version="1.0"?>
+<CLBConfig version="2.0" output="output/test">
+    <Units>
+        <Params Velocity="1m/s" gauge="0.1"/>
+        <Params Viscosity="0.01m2/s" gauge="0.01"/>
+    </Units>
+    <Geometry nx="128" ny="128" nz="128">
+        <MRT><Box/></MRT>
+        <WVelocityTurbulent name="Inlet"><Box nx="1"/></WVelocityTurbulent>
+        <EPressure><Box dx="-1"/></EPressure>
+        <Wall mask = "ALL">
+            <Sphere dx="54" nx="20" dy="54" fy="74" dz="-74" nz="20"/>
+        </Wall>
+    </Geometry>
+    <Model>
+        <Params Velocity-Inlet="1m/s"
+                nu="0.05m2/s"
+                Turbulence="0.1m/s"
+                MainWaveLength="10m"
+                DiffusionWaveLength = "100m"/>
+    </Model>
+    <VTK Iterations="100" what = "U,P"/>
+    <Solve Iterations="1000"/>
+</CLBConfig>
+```
+It is important to remember that in order to use implemented turbulence generator it is required to change `WVelocity` to `WVelocityTurbulent`, e.g.: `<WVelocityTurbulent><Box nx="1"/></WVelocityTurbulent>`. The generator has more customizable attributes, given in table below, but most of them is not required for generator to work. Only the mandatory ones are provided in example above.
+
+
+
+ Attribute | Comment 
+ ------- | ------------------------------ 
+ `Modes=` | Number of harmonic modes to generate for the turbulence, default '100'.
+ `Spread=` | The way to divide the spectrum to a finite number of modes. Possible values: `Even`, `Log`, `Quantile`. Default is `Even`.
+ `Spectrum=` | Type of spectrum to use, possible values: `Von Karman`, `One Wave`. Default is `Von Karman` 
+ `MainWaveLength=` | Main wave-length in the Von Karman spectrum.
+ `DiffusionWaveLength=` | Diffusion scale wave-length in the Von Karman spectrum.
+ `MinWaveLength=` | Minimal space wave-length. TODO:Default value
+ `MaxWaveLength=` | Maximal space wave-length.
+ `TimeWaveLength=` | Time wave-length of the syntetic turbulence.
+ 
+ It is possible to specify `WaveLength` parameters in terms of `WaveNumber` or `WaveFrequency`. 
+
+
+##Symmetry
+
+TODO:ustalić jak było z przesunięciem przy symetri, czy ma ona być na ostatnim elemencie ciała czy jedno za nim. 

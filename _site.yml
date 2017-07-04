@@ -1,0 +1,48 @@
+name: "TCLB Manual"
+navbar: 
+    title: "TCLB Manual"
+    right:
+        - text: "Home"
+          href: index.html
+        - text: "About"
+          href: about.html
+        - text: "TCLB on GitHub"
+          href: https://github.com/CFD-GO/TCLB    
+    left:
+        - text: "User Manual"
+          menu:
+            - text: "Installation"
+              href: installation.html
+            - text: "Running calculations"
+              href: calc.html
+            - text: "Configuring case"
+              href: user_manual.html
+            - text: "Examples"
+              href: examples.html
+            - text: "Analyzing results"
+              href: LINK_TO_PARAVIEW
+        - text: "Model Development"
+          menu:
+            - text: "Basic information"
+              href: LINK_TO_MODELS
+            - text: "Tutorials"
+              menu:
+                - text: "FD wave equation"
+                  href: FD_WAVE_TUT
+                - text: "Kupershtokh SCMP model"
+                  href: KUPER_TUT
+                - text: "D2Q9 SRT"
+                  href: D2Q9_TUT
+                - text: "Available models"
+                  href: LINK_TO_MODELS
+        - text: "XML Reference"
+          menu:
+            - text: "Callbacks"
+              href: callbacks.html
+        - text: "Developer Manual"
+          href: DEV_MAN
+          
+output:
+  html_document:
+    toc: true
+    highlight: textmate
