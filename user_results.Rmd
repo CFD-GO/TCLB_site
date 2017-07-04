@@ -1,0 +1,8 @@
+---
+title: "Analyzing results"
+author: "Paweł Obrępalski"
+date: "July 4, 2017"
+output: html_document
+---
+
+Results of the calculations can be analyzed using [ParaView](https://www.paraview.org/), an open-source, multi-platform data analysis and visualization application.

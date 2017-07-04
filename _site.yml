@@ -12,37 +12,30 @@ navbar:
         - text: "User Manual"
           menu:
             - text: "Installation"
-              href: installation.html
+              href: user_installation.html
             - text: "Running calculations"
-              href: calc.html
+              href: user_calc.html
             - text: "Configuring case"
-              href: user_manual.html
+              href: user_config.html
             - text: "Examples"
-              href: examples.html
+              href: user_examples.html
             - text: "Analyzing results"
-              href: LINK_TO_PARAVIEW
+              href: user_results.html
         - text: "Model Development"
           menu:
             - text: "Basic information"
-              href: LINK_TO_MODELS
+              href: model_info.html
             - text: "Tutorials"
-              menu:
-                - text: "FD wave equation"
-                  href: FD_WAVE_TUT
-                - text: "Kupershtokh SCMP model"
-                  href: KUPER_TUT
-                - text: "D2Q9 SRT"
-                  href: D2Q9_TUT
-                - text: "Available models"
-                  href: LINK_TO_MODELS
+              href: model_tut_FD.html
         - text: "XML Reference"
           menu:
             - text: "Callbacks"
-              href: callbacks.html
+              href: xml_callbacks.html
         - text: "Developer Manual"
           href: DEV_MAN
           
 output:
   html_document:
     toc: true
+    toc_float: true
     highlight: textmate

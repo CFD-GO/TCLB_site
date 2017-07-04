@@ -1,0 +1,24 @@
+---
+title: "Model Information"
+author: "Paweł Obrępalski"
+date: "July 4, 2017"
+output: html_document
+---
+
+Basic information needed to develop models will apear here
+
+#General information
+
+2 most important files: Dynamics.c and Dynamics.R, what goes where(logic, settings, quantities)
+
+#Dynamics.R
+
+File structure, what are quantities, globals, etc, whats needed in (almost) every model
+
+#Dynamics.C
+
+File structure, what goes where etc.
+
+#Advanced concepts
+
+Extracting values, calculating forces (TODO: co jeszcze?)
