@@ -10,19 +10,19 @@ These tutorials will try to teach you how to make and use a new model in TCLB. F
 #Finite difference wave equation
 We want to discretize the [Wave Equation](https://en.wikipedia.org/wiki/Wave_equation):
 
-![u'' = c^2\Delta u](https://latex.codecogs.com/gif.latex?\\ddot&space;u=c^2\\Delta&space;u)
+$\ddot{u} = c^2\Delta u$
 
 For this purpose we will use Finite Difference method. First we change the equation into two first order (in time) equations:
 
-![v' = c^2\Delta u, u'=v](https://latex.codecogs.com/gif.latex?\\begin\{cases\}\\dot&space;v&=c^2\\Delta&space;u\\\\\\dot&space;u&=v\\end\{cases\})
+$\left\{\begin{eqnarray} \dot{v} = c^2\Delta u \\ \dot{u} =v \end{eqnarray}\right.$ TODO:wyrównać
 
 Now let us discretise the [Laplace operator](https://en.wikipedia.org/wiki/Laplace_operator) with simple finite difference (in 2D):
 
-![Delta u = (u(i-1)+u(i+1)-2u(i))/(dx^2)](https://latex.codecogs.com/gif.latex?%5CDelta%20u%20%5Csimeq%20%5Cfrac%7Bu_%7Bi-1%2Cj%7D&plus;u_%7Bi&plus;1%2Cj%7D&plus;u_%7Bi%2Cj-1%7D&plus;u_%7Bi%2Cj&plus;1%7D-4%20u_%7Bi%2Cj%7D%7D%7Bdx%5E2%7D)
+$\Delta u \approx \frac{(u_{i-1,j}+u_{i+1,j}+u_{i,j-1}+u_{i,j+1}-4u_{i,j})}{(dx^2)}$
 
 Finnaly we will use, what is called [Semi-implicit Euler rule](https://en.wikipedia.org/wiki/Semi-implicit_Euler_method) to integrate this equation in time. This will give us:
 
-![v(n+1)=v(n)+dt c^2 Delta u(n), u(n+1)=u(n)+dt v(n+1)](https://latex.codecogs.com/gif.latex?%5Cbegin%7Bcases%7Dv%5E%7Bn&plus;1%7D_%7Bi%2Cj%7D%20%26%3D%20v%5En_%7Bi%2Cj%7D%20&plus;%20%5Ctext%7Bdt%7D%5Ccdot%20c%5E2%20%5CDelta%20u%5En%5C%5Cu%5E%7Bn&plus;1%7D_%7Bi%2Cj%7D%20%26%3D%20u%5En_%7Bi%2Cj%7D%20&plus;%20%5Ctext%7Bdt%7D%5Ccdot%20v%5E%7Bn&plus;1%7D_%7Bi%2Cj%7D%5Cend%7Bcases%7D)
+$\left\{\begin{eqnarray} v^{n+1}_{i,j}=v^n_{i,j}+dt c^2\Delta u^n \\ u^{n+1}_{i,j}= u^n_{i,j} +dtv^{n+1}_{i,j} \end{eqnarray}\right.$
 
 The semi-implicit-ness can be seen in the index of `v` in the second line
 
@@ -30,22 +30,31 @@ Finnaly: we will get rid of all units by assuming `dx` and `dt` equal to 1
 
 # Implementation
 ## Creating a model
-Every model in TCLB is defined by a subdirectory of `src`. Let us now create a new one:
+
+Every model in TCLB is defined by a subdirectory of `models`. Let us now create a new one:
+
 ```bash
-mkdir src/wave
-touch src/wave/conf.mk
+mkdir models/tutorial/wave
+touch models/tutorial/wave/conf.mk
 ```
 The `conf.mk` file stores some additional settings for a model, but it also tells TCLB that this directory is in fact a model.
 
 Now we have to add two main files defining everything: `Dynamics.R` - defining all the setup of the model, and `Dynamics.c` - defining what will be happening in a node.
 
-We want to have two [[Fields]]: `u` and `v`. So we define them in `Dynamics.R`:
+```bash
+touch models/tutorial/wave/Dynamics.R
+touch models/tutorial/wave/Dynamics.c
+```
+
+We want to have two [[Fields]](TODO:Link what fields are): `u` and `v`. We define them in `Dynamics.R`:
+
 ```R
 AddField(name="u")
 AddField(name="v")
 ```
 
-Then we need the main dynamics of a node. First let us create a model that doesn't do anything:
+Then we need the main dynamics of a node. First let us write down the functions that will be used in the model(in Dynamics.c):
+
 ```c
 CudaDeviceFunction float2 Color() {
   float2 ret;
@@ -59,17 +68,18 @@ CudaDeviceFunction void Init() { }
 CudaDeviceFunction void Run() { }
 ```
 
-The `CudaDeviceFunction` prefix is needed for all functions in `Dynamics.c` for technical reasons. As you can see we needed to fill only the `Color` function, as it is the only one which returns a value. For now, the model doesn't make sense. Let us first understand what these function do:
+The `CudaDeviceFunction` prefix is needed for all functions in `Dynamics.c` for technical reasons. We needed to fill only the `Color` function, as it is the only one which returns a value. For now, the model doesn't do much. Before continuing, let us first understand what these function do:
 
 Function | Description
---- | ---
-`Init` | This function is called in all the nodes at the beginning of the simulation. All the initialization have to happen here
-`Run` | This function will be called in every node in every iteration - it is the main dynamic of a node
-`Color` | This function is useful only for the version of CLB with enabled graphics. It calculates the level `x` on which the color of a pixel will be based. In most cases this will be temperature or velocity.
+--- | ------------------------------------------------------------------
+`Init` | This function is called in all the nodes at the beginning of the simulation. All the initialization happens here.
+`Run` | This function will be called in every node in every iteration - it is the main dynamic of a node.
+`Color` | This function is useful only for the version of CLB with enabled graphics(`./configure --enable-graphics`). It calculates the level `x` on which the color of a pixel will be based. In most cases this will be temperature or velocity.
 
 ## First dynamics
 
-First, we want to initialize our fields:
+First, we want to initialize our fields(`Dynamics.c`):
+
 ```c
 CudaDeviceFunction void Init() {
   u = 0;
@@ -77,7 +87,8 @@ CudaDeviceFunction void Init() {
 }
 ```
 
-Then let us start with a model that just preserves both fields without changing them. In TCLB we access fields with a notation `u(dx,dy)`, where `dx` and `dy` is the position from which to take the field, relative to the current node:
+Then let us start with a model that just preserves both fields without changing them. In TCLB we access fields with a notation `u(dx,dy)`, where `dx` and `dy` is the position from which to take the field, relative to the current node(`Dynamics.c`):
+
 ```c
 CudaDeviceFunction void Run() {
   u = u(0,0);
@@ -86,11 +97,15 @@ CudaDeviceFunction void Run() {
 ```
 
 ## Adding [[Quantities]]
+TODO:link quantitites
+
 Finally we want to access the resulting data. In TCLB, the data that will be exported to VTK, TXT or other format, are called [[Quantities]]. Let us add a quantity `U` to `Dynamics.R`:
+
 ```R
 AddQuantity(name="U")
 ```
-Now we have to add the calculation:
+Now we have to add the calculation(`Dynamics.c`):
+
 ```c
 CudaDeviceFunction real_t getU() {
   return u(0,0);
@@ -98,7 +113,10 @@ CudaDeviceFunction real_t getU() {
 ```
 
 ## Running a case
-Now we can run a case (let's call it `example.xml`):
+
+Now we need to create a case file (let's call it `example.xml`):
+
+
 ```xml
 <?xml version="1.0"?>
 <CLBConfig output="output/">
@@ -110,17 +128,31 @@ Now we can run a case (let's call it `example.xml`):
 	<Solve Iterations="1000"/>
 </CLBConfig>
 ```
+
 This case will create a mesh of 128x128 nodes, initialize it and run 1000 iterations. It will also save VTK output every 10 iterations.
+
+In order to run it:
+
+```bash
+make configure
+./configure --enable-graphics
+make wave
+CLB/wave/main example.xml
+```
 
 The results are not so impressive now, because basically, not only nothing is happening in a node, but also it is initialized with 0.
 
 ## [[Settings]]
-Let us introduce two [settings](Settings) to our model:
+TODO:link settings
+
+Let us introduce two [settings](Settings) to our model(`Dynamics.R`):
+
 ```R
 AddSetting(name="Speed")
 AddSetting(name="Value", zonal=TRUE)
 ```
-Where `Speed` will be our parameter `k` in the wave equation, and `Value` will be the initial value of `u`. [[Settings]] which we want to be changing in the domain, are called "zonal". Settings are provided to us as variables in Dynamics.c:
+Where `Speed` will be our parameter `k` in the wave equation, and `Value` will be the initial value of `u`. [[Settings]] which we want to be changing in the domain, are called "zonal". Settings are provided to us as variables in `Dynamics.c`:
+
 ```c
 CudaDeviceFunction void Init() {
   u = Value;
@@ -145,7 +177,9 @@ Now we can name a region in our domain, and initialize it with a different value
 	<Solve Iterations="1000"/>
 </CLBConfig>
 ```
-This will mark a box 20x30 starting from the point (60,20) as a zone called 'box'. Then in the [[<code>&lt;Model/&gt;</code>|Container#model]] we first set `Value` in all zones to `-1`, then set it to `1` in 'box'.
+This will mark a box 20x30 starting from the point (60,20) as a zone called 'box'. Then in the `<Model>` we first set `Value` in all zones to `-1`, then set it to `1` in 'box'. 
+
+Notice: Don't forget to compile(`make wave`) the model again before running it after making any changes to `Dynamics.c` or `Dynamics.R`.
 
 You will see that the results now are much more interesting. Ok. I'm joking, they are sill constant - but at least not 0.
 

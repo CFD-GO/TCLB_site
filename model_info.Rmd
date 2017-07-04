@@ -4,8 +4,13 @@ author: "Paweł Obrępalski"
 date: "July 4, 2017"
 output: html_document
 ---
+TODO: Dodać rozwiązane tutoriale, sprawdzić by działało wszystko.
 
-Basic information needed to develop models will apear here
+
+Basic information needed to develop models will apear here. 
+
+Every model in TCLB is defined by a subdirectory of `models`.
+The `conf.mk` file stores some additional settings for a model, but it also tells TCLB that this directory is in fact a model.
 
 #General information
 
