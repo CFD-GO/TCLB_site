@@ -151,9 +151,17 @@ Let us introduce two [settings](Settings) to our model(`Dynamics.R`):
 AddSetting(name="Speed")
 AddSetting(name="Value", zonal=TRUE)
 ```
-Where `Speed` will be our parameter `k` in the wave equation, and `Value` will be the initial value of `u`. [[Settings]] which we want to be changing in the domain, are called "zonal". Settings are provided to us as variables in `Dynamics.c`:
+Where `Speed` will be our parameter `k` in the wave equation, and `Value` will be the initial value of `u`. [[Settings]] which we want to be changing in the domain, are called "zonal". Settings are provided to us as variables in `Dynamics.c`. Additionally, we need to modify `Color` function to observe the change in values in preview window:
+
 
 ```c
+CudaDeviceFunction float2 Color() {
+  float2 ret;
+  ret.x = getU();
+  ret.y = 1;
+  return ret;
+}
+
 CudaDeviceFunction void Init() {
   u = Value;
   v = 0;
@@ -170,14 +178,15 @@ Now we can name a region in our domain, and initialize it with a different value
                 </None>
 	</Geometry>
 	<Model>
-                <Params Value="-1"/>
+                <Params Value="0"/>
                 <Params Value-box="1"/>
 	</Model>
 	<VTK Iterations="10"/>
 	<Solve Iterations="1000"/>
 </CLBConfig>
 ```
-This will mark a box 20x30 starting from the point (60,20) as a zone called 'box'. Then in the `<Model>` we first set `Value` in all zones to `-1`, then set it to `1` in 'box'. 
+This will mark a box 20x30 starting from the point (60,20) as a zone called 'box'. Then in the `<Model>` we first set `Value` in all zones to `0`, then set it to `1` in 'box'. 
+
 
 Notice: Don't forget to compile(`make wave`) the model again before running it after making any changes to `Dynamics.c` or `Dynamics.R`.
 
@@ -196,7 +205,7 @@ CudaDeviceFunction void Run() {
 ```
 You can see that we assumed `dx` and `dt` equal to 1 (it will be more clear why, later on).
 
-And now ... **it won't compile**. Why? The error is a bit obscure, like with many C++ Templates errors, but the reason is simple. We didn't tell the code that we want to access `u` in our neighbors. This is crucial, because the code have to know exactly were things are accessed, to prepare the right communication buffers. You can imagine that the neighboring node is on a different GPU on a different computer. Then we need this computer to know that it will have to send this data to us. On the other hand we want to send as small packets of information as possible, that why the code have to be *conservative* wrt. to the possible access patterns. We define this information in `Dynamics.R`:
+And now ... **it won't compile**. Why? The error is a bit obscure, like with many C++ Templates errors, but the reason is simple. We didn't tell the code that we want to access `u` in our neighbors. This is crucial, because the code have to know exactly were things are accessed, to prepare the right communication buffers. You can imagine that the neighboring node is on a different GPU on a different computer. Then we need this computer to know that it will have to send this data to us. On the other hand we want to send as small packets of information as possible, that is why the code have to be *conservative* wrt. to the possible access patterns. We define this information in `Dynamics.R`:
 ```R
 AddField(name="u", dx=c(-1,1), dy=c(-1,1))
 ```
@@ -206,9 +215,9 @@ AddField(name="u", stencil2d=1)
 ```
 Which means the same thing (`stencil3d` would mean also -1 to 1 in `z` direction)
 
-Now, the code compiles. We can add another
+Now, the code compiles. We can add another parameter
 ```xml
-<Params Speed="0.01" />
+<Params Speed="0.05" />
 ```
 to our case file, run and see how the wave propagates.
 
@@ -225,25 +234,25 @@ CudaDeviceFunction void Run() {
 ```
 **Remember:** you have to modify the `v` field access pattern, and add a `Viscosity` setting in `Dynamics.R`.
 
-Now you can play a bit with the settings to see some nice waves propagating. It can be seen now more clearly that **the domain in TCLB is always periodic**. That is simply because it is the most general case. If you want to make your domain non-periodic - you add boundary conditions - otherwise, whatever leaves on one side - gets back on the other.
+Now you can play a bit with the settings to see some nice waves propagating. It can be seen now more clearly that **the domain in TCLB is always periodic**. That is simply because it is the most general case. If you want to make your domain non-periodic - you must add boundary conditions - otherwise, whatever leaves on one side - comes back on the other.
 
 ## Node types
 
-Now we can add [node types](https://github.com/CFD-GO/TCLB/wiki/Geometry) that will change the behavior of some, selected nodes. For instance, let us have a Dirichlet boundary condition. We want the nodes that are on the boundary to set `u` and `v` to a fixed value. Let's call such nodes `Dirichlet`. We define a new node type (yes, you guessed: in `Dynamics.R`):
+Now we can add [node types](TODO:polinkować) that will change the behavior of some, selected nodes. For instance, let us have a Dirichlet boundary condition. We want the nodes that are on the boundary to set `u` and `v` to a fixed value. Let's call such nodes `Dirichlet`. We define a new node type (yes, you guessed: in `Dynamics.R`):
 ```R
 AddNodeType(name="Dirichlet", group="BOUNDARY")
 ```
-You can notice that node types have 'groups' (note: these groups, customary are with all caps). A node can have only one type ... from each group. You can imagine it like this: in each node we want to be able to set *separately* a boundary condition, choose a discretization model and add a heat source. But you cannot set *two* boundary conditions in the same node.
+You can notice that node types have 'groups' (note: these groups, customary are with all caps). Each node can only be of one type ... from each group. You can imagine it like this: in each node we want to be able to set *separately* a boundary condition, choose a discretization model and add a heat source. But you cannot set *two* boundary conditions in the same node, from the same group.
 
 Now, when we have this node type, we can use it to change the dynamics:
 ```c
 CudaDeviceFunction void Run() {
-  real_t lap_u = u(-1,0) + u(1,0) + u(0,-1) + u(0,1) - 4*u(0,0)
-  real_t lap_v = v(-1,0) + v(1,0) + v(0,-1) + v(0,1) - 4*v(0,0)
+  real_t lap_u = u(-1,0) + u(1,0) + u(0,-1) + u(0,1) - 4*u(0,0);
+  real_t lap_v = v(-1,0) + v(1,0) + v(0,-1) + v(0,1) - 4*v(0,0);
   real_t a = Speed * Speed * lap_u + Viscosity * lap_v;
   v = v(0,0) + a;
   u = u(0,0) + v;
-  if (NodeType == NODE_Dirichlet) {
+  if ((NodeType & NODE_BOUNDARY) == NODE_Dirichlet) {
     u = Value;
     v = 0;
   }
@@ -267,28 +276,18 @@ Now, we can set some Dirichlet elements in the case file:
                 </None>
 	</Geometry>
 	<Model>
-                <Params Value="-1"/>
+                <Params Value="0"/>
                 <Params Value-box="1"/>
-                <Params Value-border="-1"/>
-                <Params Speed="0.001"/>
+                <Params Value-border="0"/>
+                <Params Speed="0.05"/>
                 <Params Viscosity="0.001"/>
 	</Model>
 	<VTK Iterations="10"/>
-	<Solve Iterations="1000"/>
+	<Solve Iterations="10000"/>
 </CLBConfig>
 ```
 
 We can notice the difference immediately. The waves are bouncing from the walls now.
-
-To understand the geometry definition, you have to imagine that [`box`](Geometry-Primitive#box) element by default spans the whole available space. Then by imposing `dx`, `nx` and `fx` attributes you cut it smaller. `dx` sets where the box starts, `nx` sets how *long* is the box in the x direction, and `fx` sets where it ends. Additionally, if you set a negative value it means a value *from the end*. The same applies of course to `y` and `z`. For example:
-
-Element | Region
---- | ---
-`<Box nx="1"/>` | Left border of the domain
-`<Box dx="-1"/>` | Right border of the domain
-`<Box dx="10"/>` | Everything starting from the 11th element (in x direction)
-`<Box dx="-10"/>` | 10 last layers in the x direction
-`<Box nx="10" ny="10"/>` | Square 10x10 in the left bottom corner
 
 In this case, we had a simple situation, as we have only one group of node types (and only one type), but normally we would have to distinguish between them. It would be done with:
 ```c
