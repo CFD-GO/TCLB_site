@@ -23,10 +23,12 @@ navbar:
               href: user_results.html
         - text: "Model Development"
           menu:
-            - text: "Basic information"
+            - text: "Introduction"
               href: model_info.html
-            - text: "Tutorials"
+            - text: "Tutorial 1"
               href: model_tut_FD.html
+            - text: "Tutorial 2"
+              href: model_tut_d2q9srt.html
         - text: "XML Reference"
           menu:
             - text: "Callbacks"

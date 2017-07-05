@@ -16,6 +16,8 @@ The `conf.mk` file stores some additional settings for a model, but it also tell
 
 2 most important files: Dynamics.c and Dynamics.R, what goes where(logic, settings, quantities)
 
+#conf.mk
+
 #Dynamics.R
 
 File structure, what are quantities, globals, etc, whats needed in (almost) every model

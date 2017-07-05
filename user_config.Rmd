@@ -69,7 +69,15 @@ It's easy to imagine how the geometry elements are defined, by thinking about it
 </Wall>
 ```
 
-In this example "what" is `Wall` element and "where" is `<Box dx="4" nx="10" ny="30"/>`. Defining "where" can be done in multiple ways, using `nx`,`dx`,`fx` arguments(similarly for `y` and `z`). If not specified otherwise, the element will span for the whole domain(e.g. `<MRT><Box/></MRT>` enables `MRT` collision in the entire domain). 
+In this example "what" is `Wall` element and "where" is `<Box dx="4" nx="10" ny="30"/>`. Defining "where" can be done in multiple ways, using `nx`,`dx`,`fx` arguments(similarly for `y` and `z`). To understand the geometry definition, you have to know that `box` element by default spans the whole available space. Then by imposing `dx`, `nx` and `fx` attributes you cut it smaller. `dx` sets where the box starts, `nx` sets how *long* is the box in the x direction, and `fx` sets where it ends. Additionally, if you set a negative value it means a value *from the end*. The same applies of course to `y` and `z`. For example:
+
+Element | Region
+--- | ---
+`<Box nx="1"/>` | Left border of the domain
+`<Box dx="-1"/>` | Right border of the domain
+`<Box dx="10"/>` | Everything starting from the 11th element (in x direction)
+`<Box dx="-10"/>` | 10 last layers in the x direction
+`<Box nx="10" ny="10"/>` | Square 10x10 in the left bottom corner
 
 ```{R echo=FALSE}
 mybox = function(dx=0,fx=n,n=20,m=5) {
