@@ -12,7 +12,23 @@ knitr::opts_chunk$set(echo = TRUE)
 
 #Case configuration
 
-All case properties(geometry,BCs,model settings, etc.) are specified within XML files. All of them have structure similiar to the example given below:
+All case properties(geometry,BCs,model settings, etc.) are specified within XML files. Generally, the structure of the file should look like that:
+```xml
+<?xml version="1.0"?>
+<CLBConfig>
+        <Units>
+              <Params/> <!-- Specify relation between LB and real world units here -->
+        </Units>
+        <Geometry>  <!-- Domain size --> 
+              <!-- Collision type, boundary conditions, creating/importing objects -->
+        </Geometry>
+        <Model>
+              <Params/> <!-- All parameters like velocity, density, viscosity -->
+        </Model>
+        <!-- Callbacks, python/r code -->
+</CLBConfig>
+```
+Working example with some sample values is shown below, along with explanation of each lines functionality.
 
 ```xml
 <?xml version="1.0"?>
@@ -34,6 +50,7 @@ All case properties(geometry,BCs,model settings, etc.) are specified within XML 
         <VTK Iterations="50" what = "U,P"/>
         <Solve Iterations="1000"/>
 </CLBConfig>
+
 ```
 Element                                         | Functionality
 -------------                                   | -----------------------------------------------
@@ -47,18 +64,20 @@ Element                                         | Functionality
 `</Geometry>`                                   | Closing tag for `<Geometry>` element.
 `<Model>`                                       | Element containing all desired model settings(`Params`)
 `<Params Velocity-Inlet="0.01"/>`               | Setting the value of `Velocity` parameter to 0.01 in `Inlet` element(specified in Geometry).
-`<Params nu="0.05"/>`                           | Setting the value of `nu` parametere to 0.05.
+`<Params nu="0.05"/>`                           | Setting the value of `nu` parametere to `0.05`.
 `</Model>`                                      | Closing tag for `<Model>` element. The case is initialized after this tag.
 `<Solve Iterations="5000"/>`                    | Runs 5000 iterations
 `<VTK Iterations="50"/>`                        | Specifies that next `<Solve>` element will create an VTK output file every 50 iterations, saving there U and P quantities. By default everything is saved, creating rather large file for bigger cases.
-`<Solve Iterations="1000"/>`                    | Runs 1000 iterations, creating VTK output every 50 iterations, as specified earlier.
-`</CLBConfig>`                                  | Closing tag for <CLBConfig> element, finishing whole case file.
+`<Solve Iterations="1000"/>`                    | Runs 1000 iterations, creating `VTK` output every 50 iterations, as specified earlier.
+`</CLBConfig>`                                  | Closing tag for `<CLBConfig>` element, finishing whole case file.
 
-All case files start with `<?xml version="1.0"?>` header. 
+All case files start with `<?xml version="1.0"?>` header.
 
-The configuration must be in the `<CLBConfig>` element(`<CLBConfig/>` at start and `</CLBConfig>` at the end). In this element the output path and/or prefix can be specified. In example all files will be saved in `~TCLB/output` folder, with all the filenames begining with `test` prefix.
+The configuration must be in the `<CLBConfig>` element(`<CLBConfig/>` at start and `</CLBConfig>` at the end). In this element the output path and/or prefix can be specified. In example above all files will be saved in `~TCLB/output` folder, with all the filenames begining with `test` prefix.
 
-`<Geometry>` element contains the definition of the 
+`<Geometry>` element contains the definition of the domain and objects within it
+
+
 
 ##Geometry definition 
 
@@ -137,9 +156,13 @@ brace(0,0,10,0,text="fx",adj=c(0.5,1),cex=0.5)
 
 `Sphere` Creates a sphere within a `box`, can have different dimensions in x/y/z.
 
+
+###
+
 ##Node Types
 
 Node type consists of several properties, which are organized in groups. Each node can have noly one property from each group. Additional groups can be
+
 
 
 

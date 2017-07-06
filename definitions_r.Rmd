@@ -1,0 +1,54 @@
+---
+title: "Dynamics.R"
+author: "Paweł Obrępalski"
+date: "July 6, 2017"
+output: html_document
+---
+
+##Field/Density
+
+**Fields** are variables stored in mesh nodes. It is usually necessary to be able to look into neighbouring value. This needs to be specify during `Field` declaration, as the code must 'know' that we want to access this fields values in neighbours, or otherwise it won't compile. It can be done by  by using `dx=c()`, where `c(..)` means vector in R programming language.
+
+```R
+AddField(name="u", dx=c(-1,1), dy=c(-1,1))              #2D case
+AddField(name="u", dx=c(-1,1), dy=c(-1,1), dz=c(-1,1))  #3D case
+```
+
+ It can also be done using `stencil`.
+```R
+AddField(name="u", stencil2d=1) #2D case
+AddField(name="u", stencil3d=1) #3D case
+```
+This will allow access to neighbours positioned in distance of 1 element. In order to acces further change to `c(-2,2)` or `stencil3d=2`.
+
+Values stored in fields can be accessed from `Dynamics.c` with an offset(`field_name(1,1)`). If some values are often loaded, the procedure can be optimized using accessors called **Densities** which load corresponding values from a specified field with a predefined offset. Using `Density` instead of accessing `Field` 'manually' each time will speed up the code, as required values will be loaded into memeory before `Run()` function. 
+
+##Action/Stage
+
+**Stages** are specific functions, defined in `Dynamics.c`, for which it can be defined which `Densities` will be loaded and which `Fields` will be saved. They can be defined in `Dynamics.R`
+
+
+**Action** is a series of `Stages` executed in defined order.
+
+Currently, there are 2 pre-defined `Stages`(in `src/conf.R`): `BaseIteration` and `BaseInit`. The first one runs the `Run()` function from `Dynamics.c`, while the latter runs `Init()`. There are also 2 pre-defined `Actions`: `Iteration`(which runs `BaseIteration` stage) and `Init`(which runs `BaseInit` stage). 
+
+Pre-defined `Actions/Stages` can be easily replaced with user-defined ones, as they won't be created unless no user-defined functions with those names are found. 
+
+To define new `Stage`:
+```R
+AddStage("BaseIteration", "Run", save=Fields$group == "f", load=DensityAll$group == "f")
+#Creates stage called BaseIterations, which loads all the Densities from group "f", runs the function Run() from Dynamics.c and saves all Fields from group "f"
+AddStage("CalcRho", save="rho", load=DensityAll$group == "f")
+#Creates stage called CalcRho, which loads all the Densities from group "f", and saves rho
+AddStage("CalcNu", save="nu", load=FALSE)
+#Creates stage called CalcNu, which does not load anything and only saves nu
+```
+Note: groups can be assigned to densities on declaration - `group="f"`
+
+To define new `Action`:
+```R
+AddAction("Iteration", c("BaseIteration","CalcRho","CalcNu"))
+#Creates action called Iteration, which runs  3 stages (in order): BaseIteration, CalcRho, andCalcNu
+```
+Custom `Actions` and `Stages` are used when information needs to be exchanged between processes/function in specific, other than pre-defined times. An example can be found in `kuper` models for multiphase flow.(`/models/multiphase/d3q19_kuper`). 
+

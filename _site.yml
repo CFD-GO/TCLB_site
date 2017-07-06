@@ -2,8 +2,6 @@ name: "TCLB Manual"
 navbar: 
     title: "TCLB Manual"
     right:
-        - text: "Home"
-          href: index.html
         - text: "About"
           href: about.html
         - text: "TCLB on GitHub"
