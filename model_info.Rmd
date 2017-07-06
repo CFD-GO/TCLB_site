@@ -122,7 +122,15 @@ This file contains the actual 'logic' behind the model. All the calculations are
 
 ###Init()
 
-Function called 
+Function called to initialise velocity in each node
+```c
+CudaDeviceFunction void Init() {
+// Initialise the velocity at each node 
+        real_t u[2] = {Velocity, 0.};
+        real_t d    = Density;
+        SetEquilibrium(d,u);
+}
+```
 
 ###Run()
 
@@ -149,9 +157,42 @@ CudaDeviceFunction void Run(){
         .
 }
 ```
+###Color()
 
-File structure, what goes where etc.
+This function is used to obtain preview during calculations, when not in use it can be only declared without any actual code inside.
+```c
+CudaDeviceFunction float2 Color() {
+        float2 ret;
+        vector_t u = getU();
+        ret.x = sqrt(u.x*u.x + u.y*u.y);    
+        if (NodeType == NODE_Solid){
+                ret.y = 0;
+        } else {
+                ret.y = 1;
+        }
+        return ret;
+}
+```
 
-#Advanced concepts
 
-Extracting values, calculating forces (TODO: co jeszcze?)
+
+###Get()
+
+In order to extract `Quantities` defined in `Dynamics.R` we must create function that will compute desired value. Depending on values of `vector` argument, the `Get()` function will be either `real_t` or `vector_t` type. Below are given examples for the `Quantities` used most often: 
+```c
+CudaDeviceFunction real_t getRho() {
+// This function defines the macroscopic density at the current node.
+        return f[8]+f[7]+f[6]+f[5]+f[4]+f[3]+f[2]+f[1]+f[0];
+}
+
+CudaDeviceFunction vector_t getU() {
+// This function defines the macroscopic velocity at the current node.
+        real_t d = f[8]+f[7]+f[6]+f[5]+f[4]+f[3]+f[2]+f[1]+f[0];
+        vector_t u;
+        // pv = pu + G/2
+        u.x = (( f[8]-f[7]-f[6]+f[5]-f[3]+f[1] )/d + GravitationX*0.5 );
+        u.y = ((-f[8]-f[7]+f[6]+f[5]-f[4]+f[2] )/d + GravitationY*0.5 );
+        u.z = 0;
+        return u;
+}
+```
