@@ -38,3 +38,17 @@ Callbacks allow us to perform actions during calculations e.g. saving quantities
 ###SaveMemoryDump
 
 `<MemoryDump Iterations="X"/>` Saves the state of the simulation in given iteration, which allows to resume (TODO:HOW) the simulation from this exact point, with the same conditions. Warning: Created files are huge and take a long time to save.
+
+The simulation can be later resumed using `<LoadMemoryDump>`
+
+###Adjoint
+
+###Optimize
+
+###Threshold
+
+###ThresholdNow
+
+###Repeat
+
+###SaveBinary
