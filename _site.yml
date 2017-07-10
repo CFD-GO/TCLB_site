@@ -33,7 +33,20 @@ navbar:
               href: xml_callbacks.html
         - text: "Developer Manual"
           href: DEV_MAN
-          
+        - text: "Generated"
+          menu: 
+            - text: "Geometry Primitives"
+              href: generatedGeometry-Primitives.html
+            - text: "Executions"
+              href: generatedExecutions.html
+            - text: "Setup Elements"
+              href: generatedSetup-Elements.html
+            - text: "Callbacks"
+              href: generatedCallbacks.html
+            - text: "Container"
+              href: generatedContainer.html
+            - text: "Optimization and Optimal Control"
+              href: generatedOptimization-and-Optimal-Control.html
 output:
   html_document:
     toc: true
