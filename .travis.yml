@@ -15,6 +15,7 @@ install:
 - export RMARKDOWN_MATHJAX_PATH=$PWD/MathJax-master
 - tools/deploy.sh start
 script:
-- R -e "rmarkdown::render_site('TCLB')"
+- R --slave -e "rmarkdown::render_site('TCLB')"
+- R --slave -e "rmarkdown::render_site('main')"
 after_success:
 - tools/deploy.sh finish
