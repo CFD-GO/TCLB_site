@@ -1,4 +1,5 @@
 name: "TCLB Manual"
+output_dir: "../_site/TCLB"
 navbar: 
     title: "TCLB Manual"
     right:
