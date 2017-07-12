@@ -1,0 +1,17 @@
+name: "CFD-GO"
+output_dir: "../_site"
+navbar: 
+    title: "CFD-GO"
+    right:
+        - text: "TCLB on GitHub"
+          href: https://github.com/CFD-GO/TCLB    
+    left:
+        - text: "CFD Solver"
+          menu:
+            - text: "Installation"
+              href: user_installation.html
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    highlight: textmate
