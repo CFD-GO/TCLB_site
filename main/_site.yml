@@ -1,5 +1,5 @@
 name: "CFD-GO"
-output_dir: "../_site"
+output_dir: "../_site/main"
 navbar: 
     title: "CFD-GO"
     right:
