@@ -14,7 +14,7 @@ $\ddot{u} = c^2\Delta u$
 
 For this purpose we will use Finite Difference method. First we change the equation into two first order (in time) equations:
 
-$\left\{\begin{eqnarray} \dot{v} = c^2\Delta u \\ \dot{u} =v \end{eqnarray}\right.$ TODO:wyrównać
+$\left\{\begin{eqnarray} \dot{v} =  &c^2\Delta u \\ \dot{u} =  &v  \end{eqnarray}\right.$ 
 
 Now let us discretise the [Laplace operator](https://en.wikipedia.org/wiki/Laplace_operator) with simple finite difference (in 2D):
 
@@ -22,7 +22,7 @@ $\Delta u \approx \frac{(u_{i-1,j}+u_{i+1,j}+u_{i,j-1}+u_{i,j+1}-4u_{i,j})}{(dx^
 
 Finnaly we will use, what is called [Semi-implicit Euler rule](https://en.wikipedia.org/wiki/Semi-implicit_Euler_method) to integrate this equation in time. This will give us:
 
-$\left\{\begin{eqnarray} v^{n+1}_{i,j}=v^n_{i,j}+dt c^2\Delta u^n \\ u^{n+1}_{i,j}= u^n_{i,j} +dtv^{n+1}_{i,j} \end{eqnarray}\right.$
+$\left\{\begin{eqnarray} v^{n+1}_{i,j} &= v^n_{i,j}+dt c^2\Delta u^n \\ u^{n+1}_{i,j} &= u^n_{i,j} +dtv^{n+1}_{i,j} \end{eqnarray}\right.$
 
 The semi-implicit-ness can be seen in the index of `v` in the second line
 
@@ -46,7 +46,7 @@ touch models/tutorial/wave/Dynamics.R
 touch models/tutorial/wave/Dynamics.c
 ```
 
-We want to have two [[Fields]](TODO:Link what fields are): `u` and `v`. We define them in `Dynamics.R`:
+We want to have two Fields: `u` and `v`. We define them in `Dynamics.R`:
 
 ```R
 AddField(name="u")
@@ -96,8 +96,7 @@ CudaDeviceFunction void Run() {
 }
 ```
 
-## Adding [[Quantities]]
-TODO:link quantitites
+## Adding Quantities
 
 Finally we want to access the resulting data. In TCLB, the data that will be exported to VTK, TXT or other format, are called [[Quantities]]. Let us add a quantity `U` to `Dynamics.R`:
 
@@ -142,8 +141,7 @@ CLB/wave/main example.xml
 
 The results are not so impressive now, because basically, not only nothing is happening in a node, but also it is initialized with 0.
 
-## [[Settings]]
-TODO:link settings
+## Settings
 
 Let us introduce two [settings](Settings) to our model(`Dynamics.R`):
 
@@ -209,7 +207,7 @@ And now ... **it won't compile**. Why? The error is a bit obscure, like with man
 ```R
 AddField(name="u", dx=c(-1,1), dy=c(-1,1))
 ```
-If you don't know [R](https://www.google.pl/?#q=r) then you need to know that `c(...)` means a vector/table of numbers. The above line means that the field `u` can be accessed for `dx` from -1 to 1 and `dy` from -1 to 1. Making it simple: we can access it from all of our 8 neighbors and ourselves. The other way (a shortcut) to express it would be:
+If you don't know [R](https://www.r-project.org/) then you need to know that `c(...)` means a vector/table of numbers. The above line means that the field `u` can be accessed for `dx` from -1 to 1 and `dy` from -1 to 1. Making it simple: we can access it from all of our 8 neighbors and ourselves. The other way (a shortcut) to express it would be:
 ```R
 AddField(name="u", stencil2d=1)
 ```

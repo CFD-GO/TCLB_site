@@ -6,7 +6,7 @@ output: html_document
 ---
 This tutorial will try to teach you how to make and use lattice Boltzmann (LB) models within the TCLB environment. First a brief overview will be given of the discrete [lattice Boltzmann equation](https://en.wikipedia.org/wiki/Lattice_Boltzmann_methods) taking advantage of the Bhatnagar-Gross-Krook (BGK) collision operator (also known as single relaxation time operator) will be given, then the code required to simulate Poiseuille flow will be developed.
 
-## The BGK-lattice Boltzmann Equation:
+## The BGK-lattice Boltzmann Equation
 The discrete form of the Boltzmann transport equation can be expressed as:
 
 $f_i(x+c_i,t+1)=f_i(x,t)-\frac{1}{\tau}(f_i(x,t)-f_i^{eq}(x,t))$

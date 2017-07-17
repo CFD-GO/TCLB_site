@@ -2,13 +2,8 @@
 title: "User Manual"
 author: "Paweł Obrępalski"
 date: "July 3, 2017"
-output:
-  html_document: default
+output: html_document
 ---
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
 #Case configuration
 
