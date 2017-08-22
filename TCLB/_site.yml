@@ -5,8 +5,8 @@ navbar:
     right:
         - text: "About"
           href: about.html
-        - text: "TCLB on GitHub"
-          href: https://github.com/CFD-GO/TCLB    
+        - icon: fa-github fa-2x
+          href: https://github.com/CFD-GO/TCLB
     left:
         - text: "User Manual"
           menu:
@@ -55,3 +55,4 @@ output:
       collapsed: false
     toc_depth: 2
     highlight: textmate
+    theme: flatly
