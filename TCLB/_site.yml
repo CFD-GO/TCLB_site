@@ -3,9 +3,7 @@ output_dir: "../_site/TCLB"
 navbar: 
     title: "TCLB Manual"
     right:
-        - text: "About"
-          href: about.html
-        - icon: fa-github fa-2x
+        - icon: fa-github fa-2x my-nopad
           href: https://github.com/CFD-GO/TCLB
     left:
         - text: "User Manual"
@@ -29,25 +27,10 @@ navbar:
             - text: "Tutorial 2"
               href: model_tut_d2q9srt.html
         - text: "XML Reference"
+          href: ../xmlref
           menu:
             - text: "Callbacks"
               href: xml_callbacks.html
-        - text: "Developer Manual"
-          href: DEV_MAN
-        - text: "Generated"
-          menu: 
-            - text: "Geometry Primitives"
-              href: generatedGeometry-Primitives.html
-            - text: "Executions"
-              href: generatedExecutions.html
-            - text: "Setup Elements"
-              href: generatedSetup-Elements.html
-            - text: "Callbacks"
-              href: generatedCallbacks.html
-            - text: "Container"
-              href: generatedContainer.html
-            - text: "Optimization and Optimal Control"
-              href: generatedOptimization-and-Optimal-Control.html
 output:
   html_document:
     toc: true
@@ -56,3 +39,4 @@ output:
     toc_depth: 2
     highlight: textmate
     theme: flatly
+    css: tclb.css
