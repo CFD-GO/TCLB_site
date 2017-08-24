@@ -1,0 +1,121 @@
+---
+title: ""
+output: 
+  html_document:
+    toc_float: false
+---
+
+```{css}
+html, body {
+  overflow-x: hidden;
+}
+.row1 {
+  background: #149c82;
+  color: white;
+}
+.row1 a {
+  color: white;
+  font-weight: bold;
+}
+.row2 {
+  background: white; 
+}
+.row3 {
+  background: #149c82;
+  color: white;
+}
+.widerow{
+  margin-left: -2000px;
+  padding-left: 2000px;
+  margin-right: -2000px;
+  padding-right: 2000px;
+  padding-bottom: 10px;
+  padding-top:10px;
+  overflow:auto;
+  text-align:center;
+}
+
+.nicecol {
+  padding-top: 70px;
+}
+
+.navbar {
+  transition: padding-top 1s;
+}
+
+.navbar-brand{
+  transition: font-size 1s, padding-top 1s;
+}
+
+.grow {
+/*  height: 90px;
+  padding-top:20px;*/
+  padding-top:20px;
+/*  padding-bottom:20px;*/
+}
+
+.grow .navbar-brand {
+  font-size: 35px;
+  padding-top: 0px;
+}
+```
+
+```{js}
+var RMD = {};
+
+(function() {
+
+
+  RMD.AppViewModel = function() {
+    var self = this;
+
+    self.handleWindowScroll = function(event) {
+      var scrollPos = $(event.target).scrollTop();
+      if (scrollPos > 20) {
+        $('.navbar').removeClass("grow");
+      }
+      else {
+        $('.navbar').addClass("grow");
+      }
+    }
+    self.init = function() {
+      $('.navbar').addClass("grow");
+      $(window).on('scroll', self.handleWindowScroll);
+    }
+  }
+
+
+}());
+
+$(document).ready(function() {
+  RMD.app = new RMD.AppViewModel();
+  RMD.app.init();
+});
+```
+
+# {.widerow .row1}
+## {.col-sm-7}
+
+![Nice image of a car](images/carU.png)
+
+## Fast. Functional. Fun. {.col-sm-5 .nicecol}
+
+TCLB is a free and open source CFD solver based on <a href="https://en.wikipedia.org/wiki/Lattice_Boltzmann_methods">Lattice Boltzmann Method</a> with a wide range of applicability, including complex fluid flows involving turbulence and heat transfer, electrokinetics, multiphase problems, and non-newtonian fluids.
+
+# {.widerow .row2}
+## High performance on GPU {.col-sm-5 .nicecol}
+
+Very good scalability of the TCLB code gives the posibility Its core is a high-performance CUDA code, which can be ran efficiently on multiple GPUs, with performance far beyond usual, CPU-based programs.
+
+## {.col-sm-7}
+
+![Nice image of a car](images/carU.png)
+
+# {.widerow .row3}
+## {.col-sm-7}
+
+![](images/main_3.png)
+
+## Sub {.col-sm-5 .nicecol}
+
+Adjoint capability can also be found in TCLB, and can be used for topology optimization.

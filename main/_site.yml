@@ -1,24 +1,27 @@
 name: "CFD-GO"
 output_dir: "../_site/main"
-#navbar: 
-#    title: "CFD-GO"
-#    right:
-#        - text: "TCLB on GitHub"
-#          href: https://github.com/CFD-GO/TCLB    
-#    left:
-#        - text: "CFD Solver"
-#          menu:
-#            - text: "Installation"
-#              href: user_installation.html
+navbar: 
+    #type: inverse
+    title: "TCLB"
+    right:
+        - text: "TCLB on GitHub"
+          href: https://github.com/CFD-GO/TCLB    
+    left:
+        - text: "CFD Solver"
+          menu:
+            - text: "Installation"
+              href: user_installation.html
 output:
   html_document:
-    theme: cosmo
+#    theme: cosmo
+    theme: flatly
+    
     highlight: textmate
     mathjax: null
     toc_depth: 3
     toc_float:
       collapsed: false
-    includes:
-      before_body: header.html
-      after_body: footer.html
-    css: TCLB.css
+#    includes:
+#      before_body: header.html
+#      after_body: footer.html
+#    css: TCLB.css
