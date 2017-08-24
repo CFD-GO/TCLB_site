@@ -5,7 +5,7 @@ output:
     toc_float: false
 ---
 
-```{css}
+```{css echo=FALSE}
 html, body {
   overflow-x: hidden;
 }
@@ -60,7 +60,7 @@ html, body {
 }
 ```
 
-```{js}
+```{js echo=FALSE}
 var RMD = {};
 
 (function() {
