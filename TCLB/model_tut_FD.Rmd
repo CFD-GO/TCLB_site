@@ -1,7 +1,7 @@
 ---
 title: "FD wave equation"
-author: "Paweł Obrępalski"
-date: "July 4, 2017"
+author: "Łukasz Łaniewski-Wołłk"
+date: "Mar 8, 2016"
 output: html_document
 ---
 These tutorials will try to teach you how to make and use a new model in TCLB. First it will discuss our goal: the model we want to create. Then it will take you step by step, on how to create all the needed components.

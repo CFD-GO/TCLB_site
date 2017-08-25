@@ -1,7 +1,7 @@
 ---
 title: "D2Q9 Single Relexation Time(SRT)"
-author: "Paweł Obrępalski"
-date: "July 5, 2017"
+author: "Travis Mitchell"
+date: "May 30, 2016"
 output: html_document
 ---
 This tutorial will try to teach you how to make and use lattice Boltzmann (LB) models within the TCLB environment. First a brief overview will be given of the discrete [lattice Boltzmann equation](https://en.wikipedia.org/wiki/Lattice_Boltzmann_methods) taking advantage of the Bhatnagar-Gross-Krook (BGK) collision operator (also known as single relaxation time operator) will be given, then the code required to simulate Poiseuille flow will be developed.
