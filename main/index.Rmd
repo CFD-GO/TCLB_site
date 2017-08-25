@@ -1,63 +1,66 @@
 ---
+title: ""
 output: 
   html_document:
     toc_float: false
-    includes:
-      before_body: [header.html]
-
 ---
 
-<script src="TCLBmain.js"></script> 
+```{js echo=FALSE}
+var RMD = {};
 
-```{js}
-$("#mainHeader").removeClass("alwaysShrunk");
-$("#pageContent").removeClass("standardPadding");
+(function() {
+
+
+  RMD.AppViewModel = function() {
+    var self = this;
+
+    self.handleWindowScroll = function(event) {
+      var scrollPos = $(event.target).scrollTop();
+      if (scrollPos > 20) {
+        $('.navbar').removeClass("grow");
+      }
+      else {
+        $('.navbar').addClass("grow");
+      }
+    }
+    self.init = function() {
+      $('.navbar').addClass("grow");
+      $(window).on('scroll', self.handleWindowScroll);
+    }
+  }
+
+
+}());
+
+$(document).ready(function() {
+  RMD.app = new RMD.AppViewModel();
+  RMD.app.init();
+});
 ```
-<!--html_preserve-->
 
-<!-- 
-developed at <a href="https://c-cfd.meil.pw.edu.pl/">C-CFD group</a> at <a href="https://www.pw.edu.pl/">Warsaw University of Technology</a>.
--->
+# {.widerow .row1}
+## {.col-sm-7}
 
+![Nice image of a car](images/carU.png)
 
-<div id="homeContent">
-  <div class="band full sparkle first rightText">
-    <div class="bandContent vCenter">
-      <div class="blurb">
-      <div class="tagline">Fast.Functional.Open source.</div>
-          <div>
-TCLB is a free, open source, CFD solver based on <a href="https://en.wikipedia.org/wiki/Lattice_Boltzmann_methods">Lattice Boltzmann Method</a> with a wide range of applicability, including complex fluid flows involving turbulence and heat transfer, electrokinetics, multiphase problems, and non-newtonian fluids.
-          </div>
-      </div>
-    </div>
-    <img class="imageOne" src="images/main_1.png"/>
-  </div>
+## Fast. Functional. Fun. {.col-sm-5 .nicecol}
 
-  <div class="band full cgblue second leftText">
-    <div class="bandContent vCenter">
-      <div class="blurb">
-        <div>
-Its core is a high-performance CUDA code, which can be ran efficiently on multiple GPUs, with performance far beyond usual, CPU-based programs.
-        </div>
-      </div>
-    </div>
-    <img class="imageTwo" src="images/main_2.png"/>
-  </div>
+TCLB is a free and open source CFD solver based on <a href="https://en.wikipedia.org/wiki/Lattice_Boltzmann_methods">Lattice Boltzmann Method</a> with a wide range of applicability, including complex fluid flows involving turbulence and heat transfer, electrokinetics, multiphase problems, and non-newtonian fluids.
 
-  <div class="band full lgrey third rightText">
-    <img class="imageThree" src="images/main_3.png"/>
-    <div class="bandContent vCenter">
-      <div class="blurb">
-        <div>
-                Adjoint capability can also be found in TCLB, and can be used for topology optimization.
-        </div>
-        <div class="actions">
-          <div><a href="../user_installation.html"><button class="bigButton getStarted">Get Started</button></a></div>
-          <div><a href="https://github.com/CFD-GO/TCLB/"><button class="bigButton github">View on GitHub</button></a></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+# {.widerow .row2}
+## High performance on GPU {.col-sm-5 .nicecol}
 
-<!--/html_preserve-->
+Very good scalability of the TCLB code gives the posibility Its core is a high-performance CUDA code, which can be ran efficiently on multiple GPUs, with performance far beyond usual, CPU-based programs.
+
+## {.col-sm-7}
+
+![Nice image of a car](images/carU.png)
+
+# {.widerow .row3}
+## {.col-sm-7}
+
+![](images/main_3.png)
+
+## Adjoint optimization {.col-sm-5 .nicecol}
+
+Adjoint capability can also be found in TCLB, and can be used for topology optimization.
