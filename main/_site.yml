@@ -2,15 +2,31 @@ name: "CFD-GO"
 output_dir: "../_site/main"
 navbar: 
     #type: inverse
-    title: "TCLB"
+    title: "TCLB Solver"
     right:
-        - text: "TCLB on GitHub"
-          href: https://github.com/CFD-GO/TCLB    
-    left:
-        - text: "CFD Solver"
+        - text: "Get started"
           menu:
             - text: "Installation"
-              href: user_installation.html
+              href: ../TCLB/user_installation.html
+        - text: "Features"
+          menu:
+            - text: "3D LES aerodynamics"
+              href: ../TCLB/user_installation.html
+            - text: "Two-phase flow"
+              href: ../TCLB/user_installation.html
+            - text: "Topology Optimization"
+              href: ../TCLB/user_installation.html
+        - text: "About"
+          menu:
+            - text: "Authors"
+              href: ../TCLB/user_installation.html
+            - text: "Code Architecture"
+              href: ../TCLB/user_installation.html
+        - text: "Manual"
+          href: ../TCLB/
+        - icon: fa-github fa-2x my-nopad
+          href: https://github.com/CFD-GO/TCLB
+    left:
 output:
   html_document:
 #    theme: cosmo
@@ -21,6 +37,7 @@ output:
     toc_depth: 3
     toc_float:
       collapsed: false
+    css: tclb.css
 #    includes:
 #      before_body: header.html
 #      after_body: footer.html
