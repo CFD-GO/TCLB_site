@@ -165,16 +165,16 @@ It is important to remember that in order to use implemented turbulence generato
 
 
 
- Attribute              | Comment 
- -------                | ----------------------------------------------------------- 
- `Modes`                | Number of harmonic modes to generate for the turbulence, default '100'.
- `Spread`               | The way to divide the spectrum to a finite number of modes. Possible values: `Even`, `Log`, `Quantile`. Default is `Even`.
- `Spectrum`             | Type of spectrum to use, possible values: `Von Karman`, `One Wave`. Default is `Von Karman`.
- `MainWaveLength`       | Main wave-length in the Von Karman spectrum.
- `DiffusionWaveLength`  | Diffusion scale wave-length in the Von Karman spectrum.
- `MinWaveLength`        | Minimal space wave-length. TODO:Default value
- `MaxWaveLength`        | Maximal space wave-length.
- `TimeWaveLength`       | Time wave-length of the syntetic turbulence.
+Attribute              | Comment 
+---------------------- | ----------------------------------------------------------- 
+`Modes`                | Number of harmonic modes to generate for the turbulence, default '100'.
+`Spread`               | The way to divide the spectrum to a finite number of modes. Possible values: `Even`, `Log`, `Quantile`. Default is `Even`.
+`Spectrum`             | Type of spectrum to use, possible values: `Von Karman`, `One Wave`. Default is `Von Karman`.
+`MainWaveLength`       | Main wave-length in the Von Karman spectrum.
+`DiffusionWaveLength`  | Diffusion scale wave-length in the Von Karman spectrum.
+`MinWaveLength`        | Minimal space wave-length. TODO:Default value
+`MaxWaveLength`        | Maximal space wave-length.
+`TimeWaveLength`       | Time wave-length of the syntetic turbulence.
  
  It is possible to specify `WaveLength` parameters in terms of `WaveNumber` or `WaveFrequency`. 
 
