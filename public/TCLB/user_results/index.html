@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Analyzing results - TCLB Docs</title>
+    <meta name="generator" content="Hugo 0.27.1" />
+
+    
+    <meta name="description" content="TCLB Documentation">
+    
+    <link rel="canonical" href="/tclb/user_results/">
+    
+    <meta name="author" content="llaniewski">
+    
+
+    <meta property="og:url" content="/tclb/user_results/">
+    <meta property="og:title" content="TCLB Docs">
+    <meta property="og:image" content="/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="TCLB Docs">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('/fonts/icon.eot');
+        src: url('/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('/fonts/icon.woff')
+               format('woff'),
+             url('/fonts/icon.ttf')
+               format('truetype'),
+             url('/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="/stylesheets/application.css">
+    <link rel="stylesheet" href="/stylesheets/temporary.css">
+    <link rel="stylesheet" href="/stylesheets/palettes.css">
+    <link rel="stylesheet" href="/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-red palette-accent-teal">
+
+
+
+	
+	
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Analyzing results
+      </div>
+    </div>
+
+    
+
+    
+    <div class="button button-github" role="button" aria-label="GitHub">
+      <a href="https://github.com/llaniewski" title="@llaniewski on GitHub" target="_blank" class="toggle-button icon icon-github"></a>
+    </div>
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://github.com/CFD-GO/TCLB" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>TCLB Docs <span class="version">1.0.0</span></strong>
+        
+          <br>
+          CFD-GO/TCLB
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+        <ul class="repo">
+          <li class="repo-download">
+            <a href="https://github.com/CFD-GO/TCLB/archive/master.zip" target="_blank" title="Download" data-action="download">
+              <i class="icon icon-download"></i> Download
+            </a>
+          </li>
+          <li class="repo-stars">
+            <a href="https://github.com/CFD-GO/TCLB/stargazers" target="_blank" title="Stargazers" data-action="star">
+              <i class="icon icon-star"></i> Stars
+              <span class="count">&ndash;</span>
+            </a>
+          </li>
+        </ul>
+        <hr>
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="TCLB" href="/TCLB/">
+	
+	TCLB
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    <span class="section">Material</span>
+    <ul>
+      
+        
+        
+
+
+
+<a class="current" title="Analyzing results" href="/tclb/user_results/">
+	
+	Analyzing results
+</a>
+
+
+<ul id="scrollspy">
+</ul>
+
+
+      
+        
+        
+
+
+
+<a  title="D2Q9 Single Relexation Time" href="/tclb/model_tut_d2q9srt/">
+	
+	D2Q9 Single Relexation Time
+</a>
+
+
+
+      
+        
+        
+
+
+
+<a  title="Dynamics.R" href="/tclb/definitions_r/">
+	
+	Dynamics.R
+</a>
+
+
+
+      
+        
+        
+
+
+
+<a  title="Examples" href="/tclb/user_examples/">
+	
+	Examples
+</a>
+
+
+
+      
+        
+        
+
+
+
+<a  title="FD wave equation" href="/tclb/model_tut_fd/">
+	
+	FD wave equation
+</a>
+
+
+
+      
+        
+        
+
+
+
+<a  title="Hello R Markdown" href="/post/2015-07-23-r-rmarkdown/">
+	
+	Hello R Markdown
+</a>
+
+
+
+      
+        
+        
+
+
+
+<a  title="Installation" href="/tclb/user_installation/">
+	
+	Installation
+</a>
+
+
+
+      
+        
+        
+
+
+
+<a  title="Model Information" href="/tclb/model_info/">
+	
+	Model Information
+</a>
+
+
+
+      
+        
+        
+
+
+
+<a  title="Running calculations" href="/tclb/user_calc/">
+	
+	Running calculations
+</a>
+
+
+
+      
+        
+        
+
+
+
+<a  title="TCLB Manual" href="/tclb/">
+	
+	TCLB Manual
+</a>
+
+
+
+      
+        
+        
+
+
+
+<a  title="Units" href="/tclb/definitions_units/">
+	
+	Units
+</a>
+
+
+
+      
+        
+        
+
+
+
+<a  title="User Manual" href="/tclb/user_config/">
+	
+	User Manual
+</a>
+
+
+
+      
+        
+        
+
+
+
+<a  title="about" href="/tclb/about/">
+	
+	about
+</a>
+
+
+
+      
+        
+        
+
+
+
+<a  title="callbacsk" href="/tclb/xml_callbacks/">
+	
+	callbacsk
+</a>
+
+
+
+      
+    </ul>
+  
+</li>
+
+
+        </ul>
+        
+
+        
+        <hr>
+        <span class="section">The author</span>
+        
+        <ul>
+          
+
+          
+          <li>
+            <a href="https://github.com/llaniewski" target="_blank" title="@llaniewski on GitHub">
+              @llaniewski on GitHub
+            </a>
+          </li>
+          
+
+          
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Analyzing results </h1>
+
+			<p>Results of the calculations can be analyzed using <a href="https://www.paraview.org/">ParaView</a>, an open-source, multi-platform data analysis and visualization application. It can be easily installed by running</p>
+<pre class="bash"><code>sudo apt-get install paraview</code></pre>
+<p>Or, if you want to install newer version, it can be downloaded <a href="https://www.paraview.org/download/">here</a>.</p>
+<p>Paraview can open most of the files generated by the TCLB solver(<code>.pvti</code>,<code>.csv</code>) or required to run calculations(<code>.stl</code>).</p>
+<table>
+<colgroup>
+<col width="13%" />
+<col width="86%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>File extension</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>.vti</code></td>
+<td>VTK files generated by the <code>&lt;VTK&gt;</code> callback in <code>.xml</code> case files. Each solver thread creates its own <code>.vti</code> file when saving them. That’s why (usually) you do not want to open files with this extension.</td>
+</tr>
+<tr class="even">
+<td><strong><code>.pvti</code></strong></td>
+<td>Files linking separate <code>.vti</code> files, opening them will allow navigation through whole domain/time.</td>
+</tr>
+<tr class="odd">
+<td><code>.csv</code></td>
+<td>Log files generated by the <code>&lt;Log&gt;</code> callback in <code>.xml</code> case files. Containing all the values of Settings and Globals defined in <code>Dynamics.R</code> TODO:podlinkować</td>
+</tr>
+<tr class="even">
+<td><code>.xml</code></td>
+<td>Configuration files, containing <code>.xml</code> case file and information about code version/compilation settings.</td>
+</tr>
+<tr class="odd">
+<td><code>.stl</code></td>
+<td>Geometry files.</td>
+</tr>
+</tbody>
+</table>
+<div id="loading-file" class="section level2">
+<h2>Loading file</h2>
+<p>ParaView can be started either from the start menu or the terminal. When using the latter it is possible to specify which file should be opened:</p>
+<pre class="bash"><code>paraview output/d2q9_poiseuille_VTK_P00_..pvti</code></pre>
+<p>File(s) can be opened by right clicking on icon in the left-top corner or using <code>ctrl+o</code>, to choose multiple files hold <code>ctrl</code> while picking. After chosing the file, click <code>Apply</code> in the properties menu to load it. It is possible to chose at this point which data to load, which is especially usefull when analysing bigger cases.</p>
+<center>
+<img src="images/paraview_1.png" />
+</center>
+<p>Note: What is displayed here depends on what is defined in Dynamics.R</p>
+</div>
+<div id="changing-display-options" class="section level2">
+<h2>Changing display options</h2>
+<p>After loading file you will see only the outline of the domain, as this is the default display option and default displayed data is ‘Solid Color’. You can change it by choosing another option from the list.Let’s try viewing pressure in the middle of the domain - to do this we need to switch display option to <code>Slice</code> and displayed data to <code>P</code>. (see images below)</p>
+<center>
+<img src="images/paraview_2.png" />
+</center>
+<center>
+<img src="images/paraview_3.png" />
+</center>
+After that it should look like this:
+<center>
+<img src="images/paraview_4.png" />
+</center>
+<p>Notice how the presented colours are only on the one side of the spectrum. Spectrum can be rescaled either automatically to data range, or by manually providing the values.</p>
+<center>
+<img src="images/paraview_5.png" />
+</center>
+<p>TODO: moze opisać który to który</p>
+<p>It is possible that sometimes the automatic rescaling is not working as expected, it is usually caused by elements inside/near inlet/outlet which have enourmously high/low values. The same case after rescaling:</p>
+<center>
+<img src="images/paraview_6.png" />
+</center>
+<p>Using the <code>Slice</code> display option we can choose where to slice in the <code>Properties</code> menu:</p>
+<center>
+<img src="images/paraview_7.png" />
+</center>
+</div>
+<div id="q-criterion" class="section level2">
+<h2>Q-Criterion</h2>
+Find <code>Gradient Of Unstructured DataSet</code> in <code>Filters</code> menu( or use built in search function - <code>ctrl+spacebar</code>). Chose velocity array(<code>U</code>) as <code>Scalar Array</code> in <code>Properties</code> menu and mark the box labeled <code>Compute QCriterion</code>. You will now be able to display calculated <code>Q-criterion</code> by switching displayed array.
+<center>
+<img src="images/paraview_8.png" /> <img src="images/paraview_9.png" />
+</center>
+</div>
+<div id="threshold" class="section level2">
+<h2>Threshold</h2>
+<p>Find (<code>ctrl+spacebar</code>) <code>Threshold</code> function, then pick which values will be checked. For example, to separate studied object from the rest of the flow pick <code>BOUNDARY</code>(it’s equal to 1 for <code>Wall</code> nodes and 0 for flow nodes).</p>
+<center>
+<img src="images/paraview_10.png" /> <img src="images/paraview_11.png" />
+</center>
+<p>If you want to get rid of the walls you can use <code>Extract  Subset</code> filter to pick a portion of domain without walls and apply threshold later.</p>
+<center>
+<img src="images/paraview_12.png" />
+</center>
+</div>
+<div id="plot-over-line" class="section level2">
+<h2>Plot Over line</h2>
+<p>After picking <code>Plot Over Line</code> filter you can either specify the end points in <code>Properties</code> menu or manipulute them using mouse.</p>
+<center>
+<img src="images/paraview_13.png" />
+</center>
+<p>After clicking <code>Apply</code> a new window will open with the plot. You can choose wchich variables to use in <code>Properties</code> menu(along other options).</p>
+<center>
+<img src="images/paraview_14.png" />
+</center>
+</div>
+<div id="viewing-stl-geometry" class="section level2">
+<h2>Viewing STL geometry</h2>
+<p>You can use ParaView to view <code>.stl</code> files. This comes in handy when you need to import <code>.stl</code> geometry in your case, but don’t know which parameters to use. By loading <code>.stl</code> along with you generated domain(in <code>.pvti</code> file) <code>.stl</code> geometry can be quickly fitted to your domain. For this purpose use <code>Transforming</code> in <code>Properties</code> menu. The same values should work while loading <code>.stl</code> in <code>.xml</code> file.</p>
+<center>
+<img src="images/paraview_15.png" />
+</center>
+</div>
+
+
+			<aside class="copyright" role="note">
+				
+				&copy; 2017 Not yet known &ndash;
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="/" title="Material for Hugo">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Material for Hugo
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="/tclb/model_tut_d2q9srt/" title="D2Q9 Single Relexation Time">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              D2Q9 Single Relexation Time
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+<script src="//yihui.name/js/math-code.js"></script>
+<script async
+src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+    <script>
+    
+      var base_url = '\/';
+      var repo_id  = 'CFD-GO\/TCLB';
+    
+    </script>
+
+    <script src="/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

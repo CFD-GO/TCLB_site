@@ -1,0 +1,94 @@
+---
+title: "Dynamics.R"
+author: "Paweł Obrępalski"
+menu:
+  main:
+    parent: "Material"
+    weight: 0
+date: 2015-07-23T21:13:14-05:00
+categories: ["R"]
+tags: ["TCLB"]
+---
+
+##Field/Density
+
+**Fields** are variables stored in mesh nodes. It is usually necessary to be able to look into neighbouring value. This needs to be specify during `Field` declaration, as the code must 'know' that we want to access this fields values in neighbours, or otherwise it won't compile. It can be done by  by using `dx=c()`, where `c(..)` means vector in R programming language.
+
+```R
+AddField(name="u", dx=c(-1,1), dy=c(-1,1))              #2D case
+AddField(name="u", dx=c(-1,1), dy=c(-1,1), dz=c(-1,1))  #3D case
+```
+
+ It can also be done using `stencil`.
+```R
+AddField(name="u", stencil2d=1) #2D case
+AddField(name="u", stencil3d=1) #3D case
+```
+This will allow access to neighbours positioned in distance of 1 element. In order to acces further change to `c(-2,2)` or `stencil3d=2`.
+
+Values stored in fields can be accessed from `Dynamics.c` with an offset(`field_name(1,1)`). If some values are often loaded, the procedure can be optimized using accessors called **Densities** which load corresponding values from a specified field with a predefined offset. Using `Density` instead of accessing `Field` 'manually' each time will speed up the code, as required values will be loaded into memeory before `Run()` function.
+
+
+##Setting
+
+Settings are variables that can be set in the `.xml` and accessed by `Dynamics.c` in all  nodes. Settings can be `zonal`, which means that they can be set to different values in different mesh zones, defined in `.xml` files. It is also possible to define a default value for a setting, this way even if it is not specified in `.xml` file code will run without trouble.
+
+``` R
+AddSetting(name="Name", default = "value", comment="some comment", zonal=TRUE/FALSE )
+AddSetting(name="Velocity", default="0m/s", comment='Inlet velocity', zonal=TRUE)
+```
+
+##Qauantity
+
+Values that can be exported to VTK files (and Catalyst), to later analyse in ParaView. In most cases they are macroscopic human-readable quantites like velocity, pressure, displacement etc, but can be also more  'abstract' values. 
+``` R
+AddQuantity(name="Name", unit="unit", comment="Some comment", vector = T/F)
+AddQuantity(name="U", unit="m/s", comment="macroscopic velocity", vector = T)
+```
+`vector` should be set to `T` for properties like velocity, momentum etc. 
+
+In order to extract those values the `GetName()` function must be defined in `Dynamics.c`.
+
+```c
+//Example for d2q9_SRT model
+
+CudaDeviceFunction vector_t GetU(){ //The type of the function would be real_t if the Quantity is not a vector
+        real_t d = f[8]+f[7]+f[6]+f[5]+f[4]+f[3]+f[2]+f[1]+f[0]; \\Rho(density) is sum of all f[]
+        vector_t u;
+        // pv = pu + G/2
+        u.x = (( f[8]-f[7]-f[6]+f[5]-f[3]+f[1] )/d + GravitationX*0.5 );    //GravitationX/Y are `Settings`, their values are taken from `.xml` file or default from `Dynamics.R` definition.
+        u.y = ((-f[8]-f[7]+f[6]+f[5]-f[4]+f[2] )/d + GravitationY*0.5 );
+        u.z = 0;      //the model is 2 dimensional
+        return u;
+}
+```
+
+
+##Action/Stage
+
+**Stages** are specific functions, defined in `Dynamics.c`, for which it can be defined which `Densities` will be loaded and which `Fields` will be saved. They can be defined in `Dynamics.R`
+
+
+**Action** is a series of `Stages` executed in defined order.
+
+Currently, there are 2 pre-defined `Stages`(in `src/conf.R`): `BaseIteration` and `BaseInit`. The first one runs the `Run()` function from `Dynamics.c`, while the latter runs `Init()`. There are also 2 pre-defined `Actions`: `Iteration`(which runs `BaseIteration` stage) and `Init`(which runs `BaseInit` stage). 
+
+Pre-defined `Actions/Stages` can be easily replaced with user-defined ones, as they won't be created unless no user-defined functions with those names are found. 
+
+To define new `Stage`:
+```R
+AddStage("BaseIteration", "Run", save=Fields$group == "f", load=DensityAll$group == "f")
+#Creates stage called BaseIterations, which loads all the Densities from group "f", runs the function Run() from Dynamics.c and saves all Fields from group "f"
+AddStage("CalcRho", save="rho", load=DensityAll$group == "f")
+#Creates stage called CalcRho, which loads all the Densities from group "f", and saves rho
+AddStage("CalcNu", save="nu", load=FALSE)
+#Creates stage called CalcNu, which does not load anything and only saves nu
+```
+Note: groups can be assigned to densities on declaration - `group="f"`
+
+To define new `Action`:
+```R
+AddAction("Iteration", c("BaseIteration","CalcRho","CalcNu"))
+#Creates action called Iteration, which runs  3 stages (in order): BaseIteration, CalcRho, and CalcNu
+```
+Custom `Actions` and `Stages` are used when information needs to be exchanged between processes/function in specific, other than pre-defined times. An example can be found in `kuper` models for multiphase flow.(`/models/multiphase/d3q19_kuper`).

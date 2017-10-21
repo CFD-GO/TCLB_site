@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Installation - TCLB Docs</title>
+    <meta name="generator" content="Hugo 0.27.1" />
+
+    
+    <meta name="description" content="TCLB Documentation">
+    
+    <link rel="canonical" href="/tclb/user_installation/">
+    
+    <meta name="author" content="llaniewski">
+    
+
+    <meta property="og:url" content="/tclb/user_installation/">
+    <meta property="og:title" content="TCLB Docs">
+    <meta property="og:image" content="/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="TCLB Docs">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('/fonts/icon.eot');
+        src: url('/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('/fonts/icon.woff')
+               format('woff'),
+             url('/fonts/icon.ttf')
+               format('truetype'),
+             url('/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="/stylesheets/application.css">
+    <link rel="stylesheet" href="/stylesheets/temporary.css">
+    <link rel="stylesheet" href="/stylesheets/palettes.css">
+    <link rel="stylesheet" href="/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-red palette-accent-teal">
+
+
+
+	
+	
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Installation
+      </div>
+    </div>
+
+    
+
+    
+    <div class="button button-github" role="button" aria-label="GitHub">
+      <a href="https://github.com/llaniewski" title="@llaniewski on GitHub" target="_blank" class="toggle-button icon icon-github"></a>
+    </div>
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://github.com/CFD-GO/TCLB" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>TCLB Docs <span class="version">1.0.0</span></strong>
+        
+          <br>
+          CFD-GO/TCLB
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+        <ul class="repo">
+          <li class="repo-download">
+            <a href="https://github.com/CFD-GO/TCLB/archive/master.zip" target="_blank" title="Download" data-action="download">
+              <i class="icon icon-download"></i> Download
+            </a>
+          </li>
+          <li class="repo-stars">
+            <a href="https://github.com/CFD-GO/TCLB/stargazers" target="_blank" title="Stargazers" data-action="star">
+              <i class="icon icon-star"></i> Stars
+              <span class="count">&ndash;</span>
+            </a>
+          </li>
+        </ul>
+        <hr>
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="TCLB" href="/TCLB/">
+	
+	TCLB
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    <span class="section">Material</span>
+    <ul>
+      
+        
+        
+
+
+
+<a  title="Analyzing results" href="/tclb/user_results/">
+	
+	Analyzing results
+</a>
+
+
+
+      
+        
+        
+
+
+
+<a  title="D2Q9 Single Relexation Time" href="/tclb/model_tut_d2q9srt/">
+	
+	D2Q9 Single Relexation Time
+</a>
+
+
+
+      
+        
+        
+
+
+
+<a  title="Dynamics.R" href="/tclb/definitions_r/">
+	
+	Dynamics.R
+</a>
+
+
+
+      
+        
+        
+
+
+
+<a  title="Examples" href="/tclb/user_examples/">
+	
+	Examples
+</a>
+
+
+
+      
+        
+        
+
+
+
+<a  title="FD wave equation" href="/tclb/model_tut_fd/">
+	
+	FD wave equation
+</a>
+
+
+
+      
+        
+        
+
+
+
+<a  title="Hello R Markdown" href="/post/2015-07-23-r-rmarkdown/">
+	
+	Hello R Markdown
+</a>
+
+
+
+      
+        
+        
+
+
+
+<a class="current" title="Installation" href="/tclb/user_installation/">
+	
+	Installation
+</a>
+
+
+<ul id="scrollspy">
+</ul>
+
+
+      
+        
+        
+
+
+
+<a  title="Model Information" href="/tclb/model_info/">
+	
+	Model Information
+</a>
+
+
+
+      
+        
+        
+
+
+
+<a  title="Running calculations" href="/tclb/user_calc/">
+	
+	Running calculations
+</a>
+
+
+
+      
+        
+        
+
+
+
+<a  title="TCLB Manual" href="/tclb/">
+	
+	TCLB Manual
+</a>
+
+
+
+      
+        
+        
+
+
+
+<a  title="Units" href="/tclb/definitions_units/">
+	
+	Units
+</a>
+
+
+
+      
+        
+        
+
+
+
+<a  title="User Manual" href="/tclb/user_config/">
+	
+	User Manual
+</a>
+
+
+
+      
+        
+        
+
+
+
+<a  title="about" href="/tclb/about/">
+	
+	about
+</a>
+
+
+
+      
+        
+        
+
+
+
+<a  title="callbacsk" href="/tclb/xml_callbacks/">
+	
+	callbacsk
+</a>
+
+
+
+      
+    </ul>
+  
+</li>
+
+
+        </ul>
+        
+
+        
+        <hr>
+        <span class="section">The author</span>
+        
+        <ul>
+          
+
+          
+          <li>
+            <a href="https://github.com/llaniewski" target="_blank" title="@llaniewski on GitHub">
+              @llaniewski on GitHub
+            </a>
+          </li>
+          
+
+          
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Installation </h1>
+
+			<div id="installation" class="section level1">
+<h1>Installation</h1>
+<div id="downloading-files" class="section level2">
+<h2>Downloading files</h2>
+<p><code>bash git clone https://github.com/CFD-GO/TCLB.git cd TCLB</code>s ##Dependencies</p>
+<p>In order to use TCLB solver, the following tools are required:</p>
+<ul>
+<li><a href="https://www.r-project.org/">R</a></li>
+<li>packages for R: <a href="https://cran.r-project.org/package=optparse">optparse</a>, <a href="https://cran.r-project.org/package=numbers">numbers</a>, <a href="https://github.com/llaniewski/rtemplate">template</a>, <a href="https://github.com/llaniewski/gvector">gvector</a>, <a href="https://github.com/llaniewski/polyAlgebra">polyAlgebra</a></li>
+<li><a href="https://developer.nvidia.com/cuda-zone">nVidia CUDA</a> (if you want to use GPU)</li>
+<li><a href="https://www.python.org/">python</a></li>
+<li><a href="http://www.numpy.org/">numpy</a> (if you want to use the integrated python interpreter)</li>
+<li><a href="https://www.python.org/">python</a>, <a href="http://www.sympy.org/">python</a></li>
+<li><a href="https://cran.r-project.org/package=rPython">rPython</a> (if you want to develop a model using python in place or R)</li>
+<li><a href="https://en.wikipedia.org/wiki/Message_Passing_Interface">MPI</a> (e.g. [OpenMPI](<a href="http://www.open-mpi.org" class="uri">http://www.open-mpi.org</a></li>
+</ul>
+<p>Most of them can be installed using the script provided within the code(tools/install.sh):</p>
+<pre class="bash"><code>sudo tools/install.sh cuda 6.5-14
+sudo tools/install.sh r
+sudo tools/install.sh openmpi
+     tools/install.sh rdep
+sudo tools/install.sh python-dev
+     tools/install.sh rpython</code></pre>
+</div>
+<div id="compilation" class="section level2">
+<h2>Compilation</h2>
+<p>After installing all required dependencies, the code is ready to be compiled. In order to do so:</p>
+<pre class="bash"><code>make configure
+./configure
+make -j 10 d2q9</code></pre>
+<p>Notes: <code>-j 10</code> is used to speed up the compilation process, by running multiple threads. <code>d2q9</code> is the name of the model, this solver comes with multiple models(TODO:link), which can be compiled(and used) by substituting <code>d2q9</code> for desired model name(e.g. <code>d3q27</code>).</p>
+<div id="configuration-options" class="section level3">
+<h3>Configuration options</h3>
+<table>
+<colgroup>
+<col width="19%" />
+<col width="80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Option</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>--enable-graphics</code></td>
+<td>Enables the (TODO:okno podglądu).</td>
+</tr>
+<tr class="even">
+<td><code>--disable-double</code></td>
+<td>Switches to single(float) precision.</td>
+</tr>
+<tr class="odd">
+<td><code>--disable-cuda</code></td>
+<td>Disables CUDA, thus compiling the code for CPU.</td>
+</tr>
+<tr class="even">
+<td><code>--with-nlopt</code></td>
+<td>Compilation with NLopt library for optimization.</td>
+</tr>
+<tr class="odd">
+<td><code>--with-python</code></td>
+<td>Compilation with enabled Python integration(TODO:do użycia w XML).</td>
+</tr>
+<tr class="even">
+<td><code>--with-r</code></td>
+<td>Compilation with enabled R integration(TODO:do użycia w XML).</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+			<aside class="copyright" role="note">
+				
+				&copy; 2017 Not yet known &ndash;
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="/post/2015-07-23-r-rmarkdown/" title="Hello R Markdown">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Hello R Markdown
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="/tclb/model_info/" title="Model Information">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Model Information
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+<script src="//yihui.name/js/math-code.js"></script>
+<script async
+src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+    <script>
+    
+      var base_url = '\/';
+      var repo_id  = 'CFD-GO\/TCLB';
+    
+    </script>
+
+    <script src="/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

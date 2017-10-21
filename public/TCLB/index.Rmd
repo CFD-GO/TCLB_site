@@ -1,0 +1,21 @@
+---
+title: "TCLB Manual"
+author: "Paweł Obrępalski"
+menu:
+  main:
+    parent: "Material"
+    weight: 0
+date: 2015-07-23T21:13:14-05:00
+categories: ["R"]
+tags: ["TCLB"]
+---
+
+
+##Site map
+
+This site contains documentation to the [TCLB solver](https://github.com/CFD-GO/TCLB/). Documentation is split in 4 parts.
+
+1.  [User Manual](user_installation.html) - Information about downloading and installing TCLB, performing calculations, setting up a simple case, and analysing results. 
+2. [Model Development](model_info.html) - Contains information necessary to develop/modify models, includes tutorials which showcase basic concepts used in code.
+3. [XML Reference](xml_callbacks.html) - Useful when configuring more advanced cases, contains documentation of supported functions.
+4. [Developer Manual](https://github.com/CFD-GO/TCLB/) - Documentation and examples useful in working with TCLB solver.

@@ -1,0 +1,76 @@
+---
+title: "callbacsk"
+author: "Paweł Obrępalski"
+menu:
+  main:
+    parent: "Material"
+    weight: 0
+date: 2015-07-23T21:13:14-05:00
+categories: ["R"]
+tags: ["TCLB"]
+---
+
+
+
+<div id="callbacks" class="section level2">
+<h2>Callbacks</h2>
+<p>Callbacks allow us to perform actions during calculations e.g. saving quantities to a file. Each action can be done once <code>&lt;Log/&gt;</code> or every X iterations <code>&lt;Log Iterations=&quot;X&quot;/&gt;</code>All the desired actions must be specified before <code>Solve</code> element. E.g. example below will result in running 500 iterations without any output and then running 100 iterations with VTK export each 10 iterations.</p>
+<pre class="xml"><code>&lt;Solve Iterations=&quot;500&quot;/&gt;
+&lt;VTK Iterations=&quot;10&quot; /&gt;
+&lt;Solve Iterations=&quot;100&quot;/&gt;</code></pre>
+<div id="solve" class="section level3">
+<h3>Solve</h3>
+<p><code>&lt;Solve Iterations=&quot;X&quot;/&gt;</code> Runs X iterations</p>
+</div>
+<div id="log" class="section level3">
+<h3>Log</h3>
+<p><code>&lt;Log Iterations=&quot;X&quot;/&gt;</code> Saves all variables, currently it is not possible to choose which variables are being saved.</p>
+</div>
+<div id="vtk" class="section level3">
+<h3>VTK</h3>
+<p><code>&lt;VTK Iterations=&quot;X&quot; what=&quot;U,P&quot; name=&quot;xxx&quot;/&gt;</code> Exports VTK data each X iterations, to a file with <code>xxx</code> prefix. It is possible to chose which variables are being exported. Both attributes can be omitted.</p>
+</div>
+<div id="txt" class="section level3">
+<h3>TXT</h3>
+<p><code>&lt;TXT Iterations=&quot;X&quot; name=&quot;xxx&quot; gzip=&quot;T/F&quot;/&gt;</code> Exporst data to TXT file each X iterations, to a file with <code>xxx</code> prefix, <code>gzip</code> is a boolean(<code>TRUE</code> or <code>FALSE</code>) parameter specifying if the TXT file should be compressed.</p>
+</div>
+<div id="failcheck" class="section level3">
+<h3>Failcheck</h3>
+<p><code>&lt;Failcheck Iterations=&quot;X&quot;/&gt;</code> Checks every X iterations if NaN values are present in solution and stops simulation if any NaN is found.</p>
+</div>
+<div id="stop" class="section level3">
+<h3>Stop</h3>
+<p><code>&lt;Stop FluxChange=&quot;1e-5&quot; Times=&quot;Y&quot; Iterations=&quot;X&quot;/&gt;</code> Checks every X iterations if change of some Global value(here <code>Fluxchange</code>) is within the specified limit(here <code>1e-5</code>). If it occurs <code>Y</code> times, the simulation is stopped.</p>
+</div>
+<div id="sample" class="section level3">
+<h3>Sample</h3>
+<p><code>&lt;Sample Iterations=&quot;XY&quot; what=&quot;U,P&quot;&gt;&lt;Point dx=&quot;10&quot; dy=&quot;20&quot;/&gt;&lt;/Sample&gt;</code> Efficient way of sampling quantities on each iteration. <code>U</code> and <code>P</code> are quantities to be sampled, if <code>what</code> attribute is omitted all quantities are sampled. <code>&lt;Point dx=&quot;10&quot; dy=&quot;20&quot;/&gt;</code> specifies from which place will the values be taken. Sampling begins after <code>XY</code> iterations.</p>
+</div>
+<div id="catalyst" class="section level3">
+<h3>Catalyst</h3>
+<p><code>&lt;Catalyst script=&quot;vis1.py&quot; Iterations=&quot;X&quot; export=&quot;CellData/PointData&quot; preprocess=&quot;T/F&quot;/&gt;</code> Runs Catalyst co-processor each X iterations using <code>vis1.py</code> Python script. Export attribute allows selecting either <code>CellData</code> or <code>PointData</code> to be exported. Preprocess is a boolean attribute(<code>TRUE</code> or <code>FALSE</code>), if active the Python script will be modified so that the files will be placed in the output directory.</p>
+</div>
+<div id="savememorydump" class="section level3">
+<h3>SaveMemoryDump</h3>
+<p><code>&lt;MemoryDump Iterations=&quot;X&quot;/&gt;</code> Saves the state of the simulation in given iteration, which allows to resume (TODO:HOW) the simulation from this exact point, with the same conditions. Warning: Created files are huge and take a long time to save.</p>
+<p>The simulation can be later resumed using <code>&lt;LoadMemoryDump&gt;</code></p>
+</div>
+<div id="adjoint" class="section level3">
+<h3>Adjoint</h3>
+</div>
+<div id="optimize" class="section level3">
+<h3>Optimize</h3>
+</div>
+<div id="threshold" class="section level3">
+<h3>Threshold</h3>
+</div>
+<div id="thresholdnow" class="section level3">
+<h3>ThresholdNow</h3>
+</div>
+<div id="repeat" class="section level3">
+<h3>Repeat</h3>
+</div>
+<div id="savebinary" class="section level3">
+<h3>SaveBinary</h3>
+</div>
+</div>

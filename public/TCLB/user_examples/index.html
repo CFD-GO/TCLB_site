@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Examples - TCLB Docs</title>
+    <meta name="generator" content="Hugo 0.27.1" />
+
+    
+    <meta name="description" content="TCLB Documentation">
+    
+    <link rel="canonical" href="/tclb/user_examples/">
+    
+    <meta name="author" content="llaniewski">
+    
+
+    <meta property="og:url" content="/tclb/user_examples/">
+    <meta property="og:title" content="TCLB Docs">
+    <meta property="og:image" content="/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="TCLB Docs">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('/fonts/icon.eot');
+        src: url('/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('/fonts/icon.woff')
+               format('woff'),
+             url('/fonts/icon.ttf')
+               format('truetype'),
+             url('/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="/stylesheets/application.css">
+    <link rel="stylesheet" href="/stylesheets/temporary.css">
+    <link rel="stylesheet" href="/stylesheets/palettes.css">
+    <link rel="stylesheet" href="/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-red palette-accent-teal">
+
+
+
+	
+	
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Examples
+      </div>
+    </div>
+
+    
+
+    
+    <div class="button button-github" role="button" aria-label="GitHub">
+      <a href="https://github.com/llaniewski" title="@llaniewski on GitHub" target="_blank" class="toggle-button icon icon-github"></a>
+    </div>
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://github.com/CFD-GO/TCLB" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>TCLB Docs <span class="version">1.0.0</span></strong>
+        
+          <br>
+          CFD-GO/TCLB
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+        <ul class="repo">
+          <li class="repo-download">
+            <a href="https://github.com/CFD-GO/TCLB/archive/master.zip" target="_blank" title="Download" data-action="download">
+              <i class="icon icon-download"></i> Download
+            </a>
+          </li>
+          <li class="repo-stars">
+            <a href="https://github.com/CFD-GO/TCLB/stargazers" target="_blank" title="Stargazers" data-action="star">
+              <i class="icon icon-star"></i> Stars
+              <span class="count">&ndash;</span>
+            </a>
+          </li>
+        </ul>
+        <hr>
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="TCLB" href="/TCLB/">
+	
+	TCLB
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    <span class="section">Material</span>
+    <ul>
+      
+        
+        
+
+
+
+<a  title="Analyzing results" href="/tclb/user_results/">
+	
+	Analyzing results
+</a>
+
+
+
+      
+        
+        
+
+
+
+<a  title="D2Q9 Single Relexation Time" href="/tclb/model_tut_d2q9srt/">
+	
+	D2Q9 Single Relexation Time
+</a>
+
+
+
+      
+        
+        
+
+
+
+<a  title="Dynamics.R" href="/tclb/definitions_r/">
+	
+	Dynamics.R
+</a>
+
+
+
+      
+        
+        
+
+
+
+<a class="current" title="Examples" href="/tclb/user_examples/">
+	
+	Examples
+</a>
+
+
+<ul id="scrollspy">
+</ul>
+
+
+      
+        
+        
+
+
+
+<a  title="FD wave equation" href="/tclb/model_tut_fd/">
+	
+	FD wave equation
+</a>
+
+
+
+      
+        
+        
+
+
+
+<a  title="Hello R Markdown" href="/post/2015-07-23-r-rmarkdown/">
+	
+	Hello R Markdown
+</a>
+
+
+
+      
+        
+        
+
+
+
+<a  title="Installation" href="/tclb/user_installation/">
+	
+	Installation
+</a>
+
+
+
+      
+        
+        
+
+
+
+<a  title="Model Information" href="/tclb/model_info/">
+	
+	Model Information
+</a>
+
+
+
+      
+        
+        
+
+
+
+<a  title="Running calculations" href="/tclb/user_calc/">
+	
+	Running calculations
+</a>
+
+
+
+      
+        
+        
+
+
+
+<a  title="TCLB Manual" href="/tclb/">
+	
+	TCLB Manual
+</a>
+
+
+
+      
+        
+        
+
+
+
+<a  title="Units" href="/tclb/definitions_units/">
+	
+	Units
+</a>
+
+
+
+      
+        
+        
+
+
+
+<a  title="User Manual" href="/tclb/user_config/">
+	
+	User Manual
+</a>
+
+
+
+      
+        
+        
+
+
+
+<a  title="about" href="/tclb/about/">
+	
+	about
+</a>
+
+
+
+      
+        
+        
+
+
+
+<a  title="callbacsk" href="/tclb/xml_callbacks/">
+	
+	callbacsk
+</a>
+
+
+
+      
+    </ul>
+  
+</li>
+
+
+        </ul>
+        
+
+        
+        <hr>
+        <span class="section">The author</span>
+        
+        <ul>
+          
+
+          
+          <li>
+            <a href="https://github.com/llaniewski" target="_blank" title="@llaniewski on GitHub">
+              @llaniewski on GitHub
+            </a>
+          </li>
+          
+
+          
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Examples </h1>
+
+			<div id="example-cases" class="section level1">
+<h1>Example cases</h1>
+<p>In this section, a few case files will be presented, along with notes on their structure and usage of most popular functions. All of them(and some others) can be found in <code>TCLB/examples</code> catalogue(TODO: powrzucać te przykłady).</p>
+<div id="simple-case" class="section level2">
+<h2>Simple case</h2>
+<p>Below is presented a simple 3-Dimensional case, with a ball in the middle of the domain. Velocity inlet is used on one side and pressure outlet on the another one(TODO:Orientacja NEWS). Notice how each dimension of the ball is specified in different way, yet it is still placed exactly in the middle of the domain:</p>
+<pre class="xml"><code>&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;CLBConfig version=&quot;2.0&quot; output=&quot;output/test&quot;&gt;
+    &lt;Geometry nx=&quot;128&quot; ny=&quot;128&quot; nz=&quot;128&quot;&gt;
+        &lt;MRT&gt;&lt;Box/&gt;&lt;/MRT&gt;
+        &lt;WVelocity name=&quot;Inlet&quot;&gt;&lt;Box nx=&quot;1&quot;/&gt;&lt;/WVelocity&gt;
+        &lt;EPressure&gt;&lt;Box dx=&quot;-1&quot;/&gt;&lt;/EPressure&gt;
+        &lt;Wall mask = &quot;ALL&quot;&gt;
+            &lt;Sphere dx=&quot;54&quot; nx=&quot;20&quot; dy=&quot;54&quot; fy=&quot;74&quot; dz=&quot;-74&quot; nz=&quot;20&quot;/&gt;
+        &lt;/Wall&gt;
+    &lt;/Geometry&gt;
+    &lt;Model&gt;
+        &lt;Params Velocity-Inlet=&quot;0.1&quot;/&gt;
+        &lt;Params nu=&quot;0.05&quot;/&gt;
+    &lt;/Model&gt;
+    &lt;VTK Iterations=&quot;100&quot; what = &quot;U,P&quot;/&gt;
+    &lt;Solve Iterations=&quot;1000&quot;/&gt;
+&lt;/CLBConfig&gt;</code></pre>
+<p>Note: It is not necessary to specify <code>&lt;Box nx=&quot;1&quot;&gt;</code> for Inlet/Outlet, as it is default value.</p>
+</div>
+<div id="defining-units" class="section level2">
+<h2>Defining Units</h2>
+<pre class="xml"><code>&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;CLBConfig version=&quot;2.0&quot; output=&quot;output/test&quot;&gt;
+    &lt;Units&gt;
+        &lt;Params Velocity=&quot;1m/s&quot; gauge=&quot;0.1&quot;/&gt;
+        &lt;Params Viscosity=&quot;0.01m2/s&quot; gauge=&quot;0.01&quot;/&gt;
+    &lt;/Units&gt;
+    &lt;Geometry nx=&quot;12.8m&quot; ny=&quot;12.8m&quot; nz=&quot;12.8m&quot;&gt;
+        &lt;MRT&gt;&lt;Box/&gt;&lt;/MRT&gt;
+        &lt;WVelocity name=&quot;Inlet&quot;&gt;&lt;Box nx=&quot;1&quot;/&gt;&lt;/WVelocity&gt;
+        &lt;EPressure&gt;&lt;Box dx=&quot;-1&quot;/&gt;&lt;/EPressure&gt;
+        &lt;Wall mask = &quot;ALL&quot;&gt;
+            &lt;Sphere dx=&quot;54&quot; nx=&quot;20&quot; dy=&quot;54&quot; fy=&quot;74&quot; dz=&quot;-74&quot; nz=&quot;20&quot;/&gt;
+        &lt;/Wall&gt;
+    &lt;/Geometry&gt;
+    &lt;Model&gt;
+        &lt;Params Velocity-Inlet=&quot;1m/s&quot;/&gt;
+        &lt;Params nu=&quot;0.05m2/s&quot;/&gt;
+    &lt;/Model&gt;
+    &lt;VTK Iterations=&quot;100&quot; what = &quot;U,P&quot;/&gt;
+    &lt;Solve Iterations=&quot;1000&quot;/&gt;
+&lt;/CLBConfig&gt;
+</code></pre>
+<p>Sets units in such a way that real-world units agree with LB units. Here <span class="math inline">\(1m = 1/0.1=10\)</span>, which means that each meter is equal to 10 elements in grid and <span class="math inline">\(0.01[\frac{m^2}{s}] = \frac{0.01}{0.01} = 1 =&gt; 1 Iteration[s] = \frac{1}{10^2}\)</span>, so 1 second in real world is equal to 100 iterations.</p>
+<p>Notice how parameters in <code>&lt;Model&gt;</code> and <code>Geometry</code> are specified and how generated case is the same as in previous example.</p>
+<p>It is important not to over-construct gauge variables. If <code>&lt;Params Size=&quot;1m&quot; gauge = &quot;10&quot;/&gt;</code> would be added to the example above it would result in an error, as too many gauge gauges would be assigned.</p>
+</div>
+<div id="control-elements" class="section level2">
+<h2>Control elements</h2>
+<pre class="xml"><code>&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;CLBConfig version=&quot;2.0&quot; output=&quot;output/test&quot;&gt;
+    &lt;Geometry nx=&quot;128&quot; ny=&quot;128&quot; nz=&quot;128&quot;&gt;
+        &lt;MRT&gt;&lt;Box/&gt;&lt;/MRT&gt;
+        &lt;WVelocity name=&quot;Inlet&quot;&gt;&lt;Box nx=&quot;1&quot;/&gt;&lt;/WVelocity&gt;
+        &lt;EPressure&gt;&lt;Box dx=&quot;-1&quot;/&gt;&lt;/EPressure&gt;
+        &lt;Wall mask = &quot;ALL&quot;&gt;
+            &lt;Sphere dx=&quot;54&quot; nx=&quot;20&quot; dy=&quot;54&quot; fy=&quot;74&quot; dz=&quot;-74&quot; nz=&quot;20&quot;/&gt;
+        &lt;/Wall&gt;
+    &lt;/Geometry&gt;
+    &lt;Model&gt;
+        &lt;Params Velocity-Inlet=&quot;0.1&quot;
+                nu=&quot;0.05&quot;/&gt;
+    &lt;/Model&gt;
+    &lt;VTK Iterations=&quot;100&quot; what = &quot;U,P&quot;/&gt;
+    &lt;Solve Iterations=&quot;1000&quot;/&gt;
+    &lt;Control Iterations=&quot;1000&quot;&gt;
+        &lt;CSV file=&quot;file.csv&quot; Time=&quot;x*1000&quot;&gt;
+        &lt;Params Velocity=&quot;y*0.02+0.05&quot;/&gt;
+    &lt;/CSV&gt;
+&lt;/Control&gt;
+&lt;/CLBConfig&gt;</code></pre>
+<p>Changes <code>Velocity</code> according to the contents of <code>file.csv</code>. Here column ‘x’ is used to compute time and ‘y’ is used to calculate ‘Velocity’ value. Notice also that <code>Velocity</code> and <code>nu</code> parameters are given in <code>&lt;Model&gt;</code> container, without the need of creating separate tags for each parameter.</p>
+</div>
+<div id="importing-geometry" class="section level2">
+<h2>Importing geometry</h2>
+<p>It is possible to import geometry from <code>.stl</code> files. It can be done by using <code>&lt;STL file=&quot;path_to_file&quot;/&gt;</code>. Additional arguments allow user to resize, rotate, and translate geometry. ParaView(TODO: podlinkować odpowiedni podrozdział) can open <code>.stl</code> files and provides a fast way of estabilishing correct import parameters. Imported geometry can be used along with geometry primitives, shown in other examples.</p>
+<pre class="xml"><code>&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;CLBConfig version=&quot;2.0&quot; output=&quot;output/&quot;&gt;
+        &lt;Units&gt;
+                &lt;Params size=&quot;1m&quot; gauge=&quot;70&quot; /&gt;
+                &lt;Params nu=&quot;1.4e-5m2/s&quot; gauge=&quot;0.0001&quot;/&gt;  (TODO: nie działa jak usunie wpisze się w jednym &lt;Params/&gt; - dlaczego?)
+        &lt;/Units&gt;
+        &lt;Geometry nx=&quot;6m&quot; ny=&quot;1m&quot; nz=&quot;1m&quot;&gt;
+                &lt;MRT&gt;&lt;Box/&gt;&lt;/MRT&gt;
+                &lt;WVelocity&gt;&lt;Inlet/&gt;&lt;/WVelocity&gt;
+                &lt;EPressure&gt;&lt;Outlet/&gt;&lt;/EPressure&gt;
+                &lt;Wall mask=&quot;ALL&quot;&gt;
+                        &lt;Channel/&gt;
+                        &lt;STL file=&quot;example/data/ahmed.stl&quot; scale=&quot;1mm&quot; Xrot=&quot;-90d&quot; x=&quot;70&quot; y=&quot;5cm&quot; z=&quot;0.5m&quot; side = &quot;out&quot;/&gt;
+                &lt;/Wall&gt;
+        &lt;/Geometry&gt;
+        &lt;Model&gt;
+                &lt;Params Velocity=&quot;0.01&quot;/&gt;
+        &lt;/Model&gt;
+        &lt;VTK Iterations=&quot;1000&quot;/&gt;
+        &lt;Solve Iterations=&quot;10000&quot;/&gt;
+&lt;/CLBConfig&gt;</code></pre>
+<table>
+<colgroup>
+<col width="6%" />
+<col width="93%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Attribute</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>scale</code></td>
+<td>Used to resize <code>.stl</code> file, can be specified with units, or as a fraction(e.g. 1/100).</td>
+</tr>
+<tr class="even">
+<td><code>Xrot,Yrot,Zrot</code></td>
+<td>Rotates geometry aroun X/Y/Z axis by given amount in degrees.</td>
+</tr>
+<tr class="odd">
+<td><code>x,y,z</code></td>
+<td>Translates geometry along X/Y/Z axis by given amount. Distance can be specified in real-world units or number of grid points(without unit).</td>
+</tr>
+<tr class="even">
+<td><code>side</code></td>
+<td>Chose if geometry will be treated as wall, possible arguments: <code>&quot;in&quot;</code>,<code>&quot;out&quot;</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="symmetry" class="section level2">
+<h2>Symmetry</h2>
+<p>TODO:ustalić jak było z przesunięciem przy symetri, czy ma ona być na ostatnim elemencie ciała czy jedno za nim.</p>
+</div>
+<div id="synthetic-turbulence" class="section level2">
+<h2>Synthetic Turbulence</h2>
+<p>A synthetic turbulence generator is implemented in TCLB solver. It is based on modified von Karman-Pao spectrum(<a href="https://arc.aiaa.org/doi/10.2514/6.1999-1872">Bailly and Juve, 1999</a>)</p>
+<pre class="xml"><code>&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;CLBConfig version=&quot;2.0&quot; output=&quot;output/test&quot;&gt;
+    &lt;Units&gt;
+        &lt;Params Velocity=&quot;1m/s&quot; gauge=&quot;0.1&quot;/&gt;
+        &lt;Params Viscosity=&quot;0.01m2/s&quot; gauge=&quot;0.01&quot;/&gt;
+    &lt;/Units&gt;
+    &lt;Geometry nx=&quot;128&quot; ny=&quot;128&quot; nz=&quot;128&quot;&gt;
+        &lt;MRT&gt;&lt;Box/&gt;&lt;/MRT&gt;
+        &lt;WVelocityTurbulent name=&quot;Inlet&quot;&gt;&lt;Box nx=&quot;1&quot;/&gt;&lt;/WVelocityTurbulent&gt;
+        &lt;EPressure&gt;&lt;Box dx=&quot;-1&quot;/&gt;&lt;/EPressure&gt;
+        &lt;Wall mask = &quot;ALL&quot;&gt;
+            &lt;Sphere dx=&quot;54&quot; nx=&quot;20&quot; dy=&quot;54&quot; fy=&quot;74&quot; dz=&quot;-74&quot; nz=&quot;20&quot;/&gt;
+        &lt;/Wall&gt;
+    &lt;/Geometry&gt;
+    &lt;Model&gt;
+        &lt;Params Velocity-Inlet=&quot;1m/s&quot;
+                nu=&quot;0.05m2/s&quot;
+                Turbulence=&quot;0.1m/s&quot;
+                MainWaveLength=&quot;10m&quot;
+                DiffusionWaveLength = &quot;100m&quot;/&gt;
+    &lt;/Model&gt;
+    &lt;VTK Iterations=&quot;100&quot; what = &quot;U,P&quot;/&gt;
+    &lt;Solve Iterations=&quot;1000&quot;/&gt;
+&lt;/CLBConfig&gt;</code></pre>
+<p>It is important to remember that in order to use implemented turbulence generator it is required to change <code>WVelocity</code> to <code>WVelocityTurbulent</code>, e.g.: <code>&lt;WVelocityTurbulent&gt;&lt;Box nx=&quot;1&quot;/&gt;&lt;/WVelocityTurbulent&gt;</code>. The generator has more customizable attributes, given in table below, but most of them is not required for generator to work. Only the mandatory ones are provided in example above.</p>
+<table>
+<colgroup>
+<col width="27%" />
+<col width="72%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Attribute</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Modes</code></td>
+<td>Number of harmonic modes to generate for the turbulence, default ‘100’.</td>
+</tr>
+<tr class="even">
+<td><code>Spread</code></td>
+<td>The way to divide the spectrum to a finite number of modes. Possible values: <code>Even</code>, <code>Log</code>, <code>Quantile</code>. Default is <code>Even</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>Spectrum</code></td>
+<td>Type of spectrum to use, possible values: <code>Von Karman</code>, <code>One Wave</code>. Default is <code>Von Karman</code>.</td>
+</tr>
+<tr class="even">
+<td><code>MainWaveLength</code></td>
+<td>Main wave-length in the Von Karman spectrum.</td>
+</tr>
+<tr class="odd">
+<td><code>DiffusionWaveLength</code></td>
+<td>Diffusion scale wave-length in the Von Karman spectrum.</td>
+</tr>
+<tr class="even">
+<td><code>MinWaveLength</code></td>
+<td>Minimal space wave-length. TODO:Default value</td>
+</tr>
+<tr class="odd">
+<td><code>MaxWaveLength</code></td>
+<td>Maximal space wave-length.</td>
+</tr>
+<tr class="even">
+<td><code>TimeWaveLength</code></td>
+<td>Time wave-length of the syntetic turbulence.</td>
+</tr>
+</tbody>
+</table>
+<p>It is possible to specify <code>WaveLength</code> parameters in terms of <code>WaveNumber</code> or <code>WaveFrequency</code>.</p>
+</div>
+</div>
+
+
+			<aside class="copyright" role="note">
+				
+				&copy; 2017 Not yet known &ndash;
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="/tclb/definitions_r/" title="Dynamics.R">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Dynamics.R
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="/tclb/model_tut_fd/" title="FD wave equation">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              FD wave equation
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+<script src="//yihui.name/js/math-code.js"></script>
+<script async
+src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+    <script>
+    
+      var base_url = '\/';
+      var repo_id  = 'CFD-GO\/TCLB';
+    
+    </script>
+
+    <script src="/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

@@ -1,0 +1,59 @@
+---
+title: "callbacsk"
+author: "Paweł Obrępalski"
+menu:
+  main:
+    parent: "Material"
+    weight: 0
+date: 2015-07-23T21:13:14-05:00
+categories: ["R"]
+tags: ["TCLB"]
+---
+##Callbacks
+Callbacks allow us to perform actions during calculations e.g. saving quantities to a file. Each action can be done once `<Log/>` or every X iterations `<Log Iterations="X"/>`All the desired actions must be specified before `Solve` element. E.g. example below will result in running 500 iterations without any output and then running 100 iterations with VTK export each 10 iterations. 
+```xml
+<Solve Iterations="500"/>
+<VTK Iterations="10" />
+<Solve Iterations="100"/>
+```
+###Solve
+`<Solve Iterations="X"/>` Runs X iterations
+
+###Log
+`<Log Iterations="X"/>` Saves all variables, currently it is not possible to choose which variables are being saved.
+
+###VTK
+`<VTK Iterations="X" what="U,P" name="xxx"/>` Exports VTK data each X iterations, to a file with `xxx` prefix. It is possible to chose which variables are being exported. Both attributes can be omitted.
+
+###TXT
+`<TXT Iterations="X" name="xxx" gzip="T/F"/>` Exporst data to TXT file each X iterations, to a file with `xxx` prefix,  `gzip` is a boolean(`TRUE` or `FALSE`) parameter specifying if the TXT file should be compressed.
+
+###Failcheck
+`<Failcheck Iterations="X"/>` Checks every X iterations if NaN values are present in solution and stops simulation if any NaN is found.
+
+###Stop
+`<Stop FluxChange="1e-5" Times="Y" Iterations="X"/>` Checks every X iterations if change of some Global value(here `Fluxchange`) is within the specified limit(here `1e-5`). If it occurs `Y` times, the simulation is stopped.
+
+###Sample
+`<Sample Iterations="XY" what="U,P"><Point dx="10" dy="20"/></Sample>` Efficient way of sampling quantities on each iteration. `U` and `P` are quantities to be sampled, if `what` attribute is omitted all quantities are sampled. `<Point dx="10" dy="20"/>` specifies from which place will the values be taken. Sampling begins after `XY` iterations.
+
+###Catalyst
+`<Catalyst script="vis1.py" Iterations="X" export="CellData/PointData" preprocess="T/F"/>` Runs Catalyst co-processor each X iterations using `vis1.py` Python script. Export attribute allows selecting either `CellData` or `PointData` to be exported. Preprocess is a boolean attribute(`TRUE` or `FALSE`), if active the Python script will be modified so that the files will be placed in the output directory. 
+
+###SaveMemoryDump
+
+`<MemoryDump Iterations="X"/>` Saves the state of the simulation in given iteration, which allows to resume (TODO:HOW) the simulation from this exact point, with the same conditions. Warning: Created files are huge and take a long time to save.
+
+The simulation can be later resumed using `<LoadMemoryDump>`
+
+###Adjoint
+
+###Optimize
+
+###Threshold
+
+###ThresholdNow
+
+###Repeat
+
+###SaveBinary

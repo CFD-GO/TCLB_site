@@ -1,0 +1,28 @@
+---
+title: "Running calculations"
+author: "Paweł Obrępalski"
+menu:
+  main:
+    parent: "Material"
+    weight: 0
+date: 2015-07-23T21:13:14-05:00
+categories: ["R"]
+tags: ["TCLB"]
+---
+
+
+
+<div id="usage" class="section level1">
+<h1>Usage</h1>
+<pre class="bash"><code>CLB/MODEL_NAME/main case_path</code></pre>
+<p>Where <code>MODEL_NAME</code> is the name of the desired model(e.g.<code>d2q9</code>) and <code>case_path</code> is the location of case file(.xml), relative to the TCLB folder.</p>
+<p>For example, to run <code>karman.xml</code> case, located in subfolder <code>example\flow\2d</code>, using <code>d2q9</code> model:</p>
+<pre class="bash"><code>CLB/d2q9/main example/flow/2d/karman.xml</code></pre>
+<div id="cpu-based-usage" class="section level3">
+<h3>CPU-based usage</h3>
+<p>By default the code will run on GPU, which requires a NVIDIA GPU with CUDA support. In order to run it on CPU, the code must be compiled using <code>--disable-cuda</code> option. In order to run the calculations on CPU in parallel, one need to start calculations using <code>mpirun</code> option:</p>
+<pre class="bash"><code>mpirun -np X CLB/MODEL_NAME/main case_path</code></pre>
+<p>Where <code>X</code> is number of threads that will be created. Usually max number of threads is equal to number of cores of a processor, with the exception of CPUs with multi-threading.</p>
+<p>TODO: Może też coś o tym jak odpalać obliczenia na klastrze?(instrukcja z wiki github)</p>
+</div>
+</div>
