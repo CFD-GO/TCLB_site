@@ -29,6 +29,12 @@ publishDir = "public"
     weight = 1
     parent = "dropdown"
 [[menu.main]]
+    name = "Docs"
+    pre = "<i class='now-ui-icons files_single-copy-04'></i>"
+    url = "http://docs.tclb.io/"
+    weight = 5
+    identifier = "docs"
+[[menu.main]]
     name = "Blog"
     pre = "<i class='now-ui-icons ui-1_calendar-60'></i>"
     url = "/post"
