@@ -2,7 +2,7 @@ theme = "hugo-now-ui"
 baseurl = "/"
 relativeurls = true
 languageCode = "en-us"
-title = "TCLB"
+title = "TCLB Solver"
 googleAnalytics = ""
 disqusShortname = ""
 ignoreFiles = ["\\.Rmd$", "_files$", "_cache$"]
@@ -55,7 +55,7 @@ publishDir = "public"
 
 [params]
     background = "img/bg11.jpg"
-    tint = "orange"
+    tint = "white"
     custom_css = ["css/highlight.min.css"]
     custom_js = []
     date_format = "Mon, Jan 2, 2006"
