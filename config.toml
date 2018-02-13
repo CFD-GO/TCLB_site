@@ -1,0 +1,66 @@
+theme = "hugo-now-ui"
+baseurl = "/"
+relativeurls = true
+languageCode = "en-us"
+title = "TCLB"
+googleAnalytics = ""
+disqusShortname = ""
+ignoreFiles = ["\\.Rmd$", "_files$", "_cache$"]
+#enableGitInfo = true
+publishDir = "../docs"
+
+[permalinks]
+    post = "/:year/:month/:day/:slug/"
+
+[[menu.main]]
+    name = "Download"
+    url = "/download"
+    pre = "<i class='now-ui-icons design_app'></i>"
+    weight = 1
+[[menu.main]]
+    name = "Features"
+    pre = "<i class='now-ui-icons ui-1_settings-gear-63'></i>"
+    url = "/features"
+    weight = 4
+    identifier = "dropdown"
+[[menu.main]]
+    name = "2D laminar flow"
+    url = "/features/flow2d"
+    weight = 1
+    parent = "dropdown"
+[[menu.main]]
+    name = "Blog"
+    pre = "<i class='now-ui-icons ui-1_calendar-60'></i>"
+    url = "/post"
+    weight = 10
+    identifier = "post"
+[[menu.main]]
+    name = "Tags"
+    pre = "<i class='now-ui-icons shopping_tag-content'></i>"
+    url = "/tags"
+    weight = 2
+    parent = "dropdown"    
+    
+[[menu.footer]]
+    identifier = "github"
+    pre = "<i class='fa fa-github'></i>"
+    url = "https://github.com/cfd-go/tclb"
+    weight = 1
+
+[params]
+    background = "img/bg11.jpg"
+    tint = "orange"
+    custom_css = ["css/highlight.min.css"]
+    custom_js = []
+    date_format = "Mon, Jan 2, 2006"
+    description = "A website built through Hugo."
+
+    # options for highlight.js (version, additional languages, and theme)
+    highlightjsVersion = "9.10.0"
+    highlightCDN = "//cdn.bootcss.com"
+    highlightjsLang = ["r", "yaml"]
+    highlightjsTheme = "github"
+
+
+    
+
