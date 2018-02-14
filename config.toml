@@ -56,7 +56,7 @@ publishDir = "public"
 [params]
     background = "img/bg11.jpg"
     tint = "white"
-    custom_css = ["css/highlight.min.css"]
+    custom_css = ["css/highlight.min.css", "css/custom.css"]
     custom_js = []
     date_format = "Mon, Jan 2, 2006"
     description = "A website built through Hugo."
