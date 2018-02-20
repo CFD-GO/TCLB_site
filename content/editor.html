@@ -1,10 +1,13 @@
 ---
 title: "Editor"
+navmenu: "editor"
 ---
 <link rel="stylesheet" href="/mylib/codemirror.css">
 <link rel="stylesheet" href="/mylib/my-show-hint.css">
 <script>
-	if (location.protocol !== "https:") location.protocol = "https:";
+	if (location.hostname != "localhost") {
+		if (location.protocol !== "https:") location.protocol = "https:";
+	}
 </script>
 <script src="/mylib/codemirror.js"></script>
 <script src="/mylib/my-show-hint.js"></script>

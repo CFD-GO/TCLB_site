@@ -1,6 +1,5 @@
 ---
 background: "images/car6.png"
-
 title: "Download and Install"
 description: "TCLB is an open-source software. The prefered way to use it is to download the source, compile it and run it."
 

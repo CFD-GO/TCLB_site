@@ -8,6 +8,7 @@ disqusShortname = ""
 ignoreFiles = ["\\.Rmd$", "_files$", "_cache$"]
 #enableGitInfo = true
 publishDir = "public"
+BrandTarget = "_self"
 
 [permalinks]
     post = "/:year/:month/:day/:slug/"
@@ -53,6 +54,13 @@ publishDir = "public"
     url = "https://github.com/cfd-go/tclb"
     weight = 1
 
+[[menu.editor]]
+    name = "Download"
+    url = "/download"
+    pre = "<i class='now-ui-icons design_app'></i>"
+    weight = 1
+
+
 [params]
     background = "img/bg11.jpg"
     tint = "white"
@@ -67,6 +75,7 @@ publishDir = "public"
     highlightjsLang = ["r", "yaml"]
     highlightjsTheme = "github"
 
+    BrandTarget = "_self"
 
     
 
