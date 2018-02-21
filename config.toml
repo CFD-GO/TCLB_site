@@ -61,11 +61,6 @@ BrandTarget = "_self"
     weight = 1
 
 [[menu.editor]]
-    name = "Log-in"
-    url = "javascript: tclb_editor_login();"
-    pre = "<i class='now-ui-icons users_circle-08'></i>"
-    weight = 100
-[[menu.editor]]
     name = "Open"
     url = "javascript: tclb_editor_open();"
     pre = "<i class='now-ui-icons arrows-1_cloud-download-93'></i>"

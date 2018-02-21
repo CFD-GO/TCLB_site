@@ -26,7 +26,8 @@ function tclb_editor_save () {
 
 $(function() {
   a = $("<a>", { class: "nav-link" });
-  a.text("LOGIN");
+  a.text("LOGIN ");
+  a.append($("<i class='now-ui-icons users_circle-08'></i>"));
   a.attr("href", "javascript:tclb_editor_login();");
   li = $("<li>", { class: "nav-item", id: "nav-login" });
   li.append(a);
@@ -37,7 +38,6 @@ $(function() {
   a = $("<a>", { class: "nav-link" });
   a.text("LOGOUT");
   a.attr("href", "javascript:tclb_editor_logout();");
-  a.append(img);
   li = $("<li>", { class: "nav-item", id: "nav-logout" });
   li.hide();
   imgdiv.append(img);

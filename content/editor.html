@@ -70,17 +70,5 @@ navmenu: "editor"
 	script.src = "/data/d2q9.js";
 	document.head.appendChild(script);
 
-      var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-        mode: "xml",
-        lineNumbers: true,
-        extraKeys: {
-          "'<'": completeAfter,
-          "'/'": completeIfAfterLt,
-          "' '": completeIfInTag,
-          "'='": completeIfInTag,
-          "Ctrl-Space": "autocomplete"
-        },
-        hintOptions: {schemaInfo: tclb_xml_scheme}
-      });
 
 </script>
