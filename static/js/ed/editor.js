@@ -25,46 +25,64 @@ function tclb_editor_save () {
 }
 
 $(function() {
-  a = $("<a>", { class: "nav-link" });
-  a.text("LOGIN ");
-  a.append($("<i class='now-ui-icons users_circle-08'></i>"));
-  a.attr("href", "javascript:tclb_editor_login();");
-  li = $("<li>", { class: "nav-item", id: "nav-login" });
-  li.append(a);
-  li.hide();
-  $("ul.navbar-nav").append(li);
-  img = $("<img>", { id: "nav-profile-avatar", class: "avatar-img rounded-circle" });
-  imgdiv = $("<div>", { class: "avatar-container" });
-  a = $("<a>", { class: "nav-link" });
-  a.text("LOGOUT");
-  a.attr("href", "javascript:tclb_editor_logout();");
-  li = $("<li>", { class: "nav-item", id: "nav-logout" });
-  li.hide();
-  imgdiv.append(img);
-  a.append(imgdiv);
-  li.append(a);
-  $("ul.navbar-nav").append(li);
+  $("ul.navbar-nav").append(
+    $("<li>", { class: "nav-item", id: "nav-login" }).append(
+      $("<a>", { class: "nav-link" })
+        .append($("<span>").text("LOGIN "))
+        .append($("<i class='now-ui-icons users_circle-08'></i>"))
+        .attr("href", "javascript:tclb_editor_login();")
+    ).hide()
+  );
+  $("ul.navbar-nav").append(
+    $("<li>", { class: "nav-item dropdown", id: "nav-logout" }).append(
+      $("<a>", { class: "nav-link dropdown-toggle", id:"navbarDropdownMenuLink", 'data-toggle':"dropdown" })
+        .append($("<span>", { class:"caret" }))
+        .attr("href", "#")
+        .append(
+          $("<div>", { class: "avatar-container" }).append(
+            $("<img>", { id: "nav-profile-avatar", class: "avatar-img rounded-circle" })
+          )
+        )
+    ).append(
+      $("<div>", { class: "dropdown-menu dropdown-menu-right", 'aria-labelledby': "navbarDropdownMenuLink"})
+        .append(
+          $("<a>", { class: "dropdown-item" })
+            .append($("<span>").text("LOGOUT"))
+            .attr("href", "javascript:tclb_editor_logout();")
+        )
+    )
+  );
 })
+
+function tclb_editor_disp_prof(profile) {
+          $("#nav-profile-avatar").attr("src",profile.avatar_url);
+          $("#nav-logout").show();
+}
 
 function tclb_editor_check_login() {
   var gh_token = Cookies.get('gh_token');
   if (gh_token) {
     console.log(gh_token);
     $("#nav-login").hide();
-    var gh = new GitHub({
-      token: gh_token
-    });
-    var me = gh.getUser();
-    console.log(me);
-    me.getProfile(function(err, profile) {
-      if (! err) {
-        console.log(profile);
-        $("#nav-profile-avatar").attr("src",profile.avatar_url);
-        $("#nav-logout").show();
-      } else {
-        console.log(err);
-      }
-    });
+    profile =  Cookies.getJSON('gh_profile');
+    if (profile) {
+      tclb_editor_disp_prof(profile);
+    } else {
+      var gh = new GitHub({
+        token: gh_token
+      });
+      var me = gh.getUser();
+      console.log(me);
+      me.getProfile(function(err, profile) {
+        if (! err) {
+          console.log(profile);
+          tclb_editor_disp_prof(profile);
+          Cookies.set('gh_profile',profile);
+        } else {
+          console.log(err);
+        }
+      });
+    }
   } else {
     $("#nav-login").show();
     $("#nav-logout").hide();
