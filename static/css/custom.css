@@ -6,3 +6,16 @@
 .navbar-transparent .navbar-title {
   display: none;
 }
+
+.avatar-img {
+	margin-top: -30%;
+	margin-bottom: -30%;
+	margin-left: 10%;
+	height: 160%;
+}
+
+.avatar-container {
+	height: 22px;
+	display:inline-block;
+}
+
