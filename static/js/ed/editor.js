@@ -102,8 +102,7 @@ function tclb_editor_check_login() {
       $("#nav-logout").hide();
     }
   } else {
-      $("#nav-login a").attr("href", "javascript:go_sec();");
-//      $("#nav-login a i").attr("class", "now-ui-icons users_circle-08");
+      $("#nav-login a").attr("href", "javascript:tclb_go_sec();");
       $("#nav-login").show();
       $("#nav-logout").hide();
   }    
