@@ -56,7 +56,7 @@ BrandTarget = "_self"
 [[menu.main]]
     identifier = "login"
     name = "Login"
-    pre = "<i class='now-ui-icons users_circle-08'></i>"
+    pre = "<i class='fa fa-cogs'></i>"
     url = ""
     weight = 20
     
