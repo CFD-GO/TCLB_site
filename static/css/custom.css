@@ -1,10 +1,18 @@
-.navbar .navbar-brand {
-    text-transform: none;
-    font-size: 1.5em;
+.navbar .navbar-title {
+
 }
 
-.navbar-transparent .navbar-title {
-  display: none;
+.navbar .navbar-brand a:hover {
+	text-decoration: none;
+}
+
+.navbar .navbar-brand {
+	text-transform: none;
+	font-size: 1.5em;
+}
+
+.navbar-transparent .navbar-subtitle {
+	display: none;
 }
 
 .avatar-img {

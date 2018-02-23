@@ -5,7 +5,7 @@ function tclb_editor_login () {
         if (err) {
           return alert("Error Authenticating with GitHub: " + err);
         }
-        Cookies.set('gh_token',data.token);
+        Cookies.set('gh_token',data.token, { secure: true });
         tclb_editor_check_login();
       });
 }
@@ -25,14 +25,7 @@ function tclb_editor_save () {
 }
 
 $(function() {
-  $("ul.navbar-nav").append(
-    $("<li>", { class: "nav-item", id: "nav-login" }).append(
-      $("<a>", { class: "nav-link" })
-        .append($("<span>").text("LOGIN "))
-        .append($("<i class='now-ui-icons users_circle-08'></i>"))
-        .attr("href", "javascript:tclb_editor_login();")
-    ).hide()
-  );
+  $("#nav-login a").attr("href", "javascript:tclb_editor_login();");
   $("ul.navbar-nav").append(
     $("<li>", { class: "nav-item dropdown", id: "nav-logout" }).append(
       $("<a>", { class: "nav-link dropdown-toggle", id:"navbarDropdownMenuLink", 'data-toggle':"dropdown" })
@@ -50,7 +43,7 @@ $(function() {
             .append($("<span>").text("LOGOUT"))
             .attr("href", "javascript:tclb_editor_logout();")
         )
-    )
+    ).hide()
   );
 })
 
@@ -77,7 +70,7 @@ function tclb_editor_check_login() {
         if (! err) {
           console.log(profile);
           tclb_editor_disp_prof(profile);
-          Cookies.set('gh_profile',profile);
+          Cookies.set('gh_profile',profile, { secure: true });
         } else {
           console.log(err);
         }

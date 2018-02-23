@@ -53,6 +53,12 @@ BrandTarget = "_self"
     url = "/tags"
     weight = 2
     parent = "dropdown"    
+[[menu.main]]
+    identifier = "login"
+    name = "Login"
+    pre = "<i class='now-ui-icons users_circle-08'></i>"
+    url = ""
+    weight = 20
     
 [[menu.footer]]
     identifier = "github"
