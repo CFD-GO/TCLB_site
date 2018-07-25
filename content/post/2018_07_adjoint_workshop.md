@@ -1,10 +1,11 @@
 ---
-title: example post
-author: Carl Boettiger
-date: '2017-11-29'
-slug: example-post
-categories: ['r', 'hugo']
-tags: ['example']
+title: Adjoint and Model Predictive Control mini-workshop
+author: Lukasz Laniewski-Wollk
+date: '2018-07-25'
+slug: adjoint-workshop-2018
+categories: ['workshops']
+tags: ['adjoint']
 ---
 
 Awesome blog post
+
