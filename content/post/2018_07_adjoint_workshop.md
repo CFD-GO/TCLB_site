@@ -9,3 +9,5 @@ tags: ['adjoint']
 
 Awesome blog post
 
+![Rocket control](images/rakieta1.gif)
+
