@@ -19,4 +19,4 @@ Knowledge of C/C++, basic ODE integration methods (Euler), Calculus 1 (of course
 
 ## Date and place
 
-The workshop will be organized at Warsaw University of Technology, the date will be decided in a [Doodle pool](https://doodle.com/poll/7hbpbsp2r6prkkz2).
+The workshop will be organized at Warsaw University of Technology, the date will be decided in a [Doodle poll](https://doodle.com/poll/7hbpbsp2r6prkkz2).
