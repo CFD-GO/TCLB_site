@@ -3,6 +3,8 @@ var tclb_sec_cookie = true;
 var tclb_im_sec = false;;
 
 $(function() {
+  console.log(location.hostname);
+
   if (location.hostname == "localhost") {
     tclb_sec_cookie = false;
     tclb_im_sec = true;
@@ -11,10 +13,12 @@ $(function() {
       tclb_im_sec = true;
     }
   }
+  console.log(tclb_im_sec);
 })
 
 function tclb_go_sec() {
-  if (location.protocol !== "https:") location.protocol = "https:";
+  console.log(tclb_im_sec);
+  if (! tclb_im_sec) location.protocol = "https:";
 }
 
 function tclb_editor_login () {
@@ -109,3 +113,6 @@ function tclb_editor_check_login() {
 }
 
 $(function() { tclb_editor_check_login(); })
+
+$(tclb_go_sec);
+
