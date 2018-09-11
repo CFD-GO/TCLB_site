@@ -46,7 +46,7 @@ BrandTarget = "_self"
     url = "/editor"
     weight = 10
     identifier = "editor"
-    parent = "login"
+    parent = "usermenu0"
 [[menu.main]]
     name = "Blog"
     pre = "<i class='now-ui-icons ui-1_calendar-60'></i>"
@@ -60,8 +60,8 @@ BrandTarget = "_self"
     weight = 2
     parent = "features"    
 [[menu.main]]
-    identifier = "login"
-    name = "Login"
+    identifier = "usermenu0"
+    name = "User"
     pre = "<i class='fa fa-cogs'></i>"
     url = ""
     weight = 20
