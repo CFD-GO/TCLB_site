@@ -23,17 +23,17 @@ BrandTarget = "_self"
     pre = "<i class='now-ui-icons ui-1_settings-gear-63'></i>"
     url = "/features"
     weight = 4
-    identifier = "dropdown"
+    identifier = "features"
 [[menu.main]]
     name = "2D laminar flow"
     url = "/features/flow2d"
     weight = 1
-    parent = "dropdown"
+    parent = "features"
 [[menu.main]]
     name = "Multi-phase flow"
     url = "/features/multiphase"
     weight = 1
-    parent = "dropdown"
+    parent = "features"
 [[menu.main]]
     name = "Docs"
     pre = "<i class='now-ui-icons files_single-copy-04'></i>"
@@ -46,6 +46,7 @@ BrandTarget = "_self"
     url = "/editor"
     weight = 10
     identifier = "editor"
+    parent = "features"    
 [[menu.main]]
     name = "Blog"
     pre = "<i class='now-ui-icons ui-1_calendar-60'></i>"
@@ -57,7 +58,7 @@ BrandTarget = "_self"
     pre = "<i class='now-ui-icons shopping_tag-content'></i>"
     url = "/tags"
     weight = 2
-    parent = "dropdown"    
+    parent = "features"    
 [[menu.main]]
     identifier = "login"
     name = "Login"
