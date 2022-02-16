@@ -13,8 +13,8 @@ params:
     - TCLB is a MPI+CUDA or MPI+CPU high-performance Computational Fluid Dynamics simulation code, based on the Lattice Boltzmann Method. It provides a clear interface for calculation of complex physics, and the implementation of new models.
   email: you@yoursite.com
   navlinks:
-    - name: Home
-      url: portfolio/
+    - name: Pulications
+      url: publication/
       home: true
     - name: About
       url: about/
