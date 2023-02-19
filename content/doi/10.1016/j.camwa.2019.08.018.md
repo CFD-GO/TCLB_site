@@ -1,7 +1,7 @@
 ---
 showonlyimage: true
 draft: false
-image: img/a4-paper.jpg
+image: img/paper1.png
 date: 2016-11-05T18:25:22+05:30
 title: A cascaded phase-field lattice Boltzmann model for the simulation of incompressible, immiscible fluids with high density contrast
 tags:
