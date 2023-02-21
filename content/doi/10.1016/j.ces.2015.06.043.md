@@ -1,7 +1,7 @@
 ---
 showonlyimage: true
 draft: false
-image: img/a4-paper.jpg
+image: img/doi/10.1016/j.ces.2015.06.043.png
 date: 2016-11-05T18:25:22+05:30
 title: Pressure drop in flow across ceramic foams—A numerical and experimental study
 tags:

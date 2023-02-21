@@ -1,7 +1,7 @@
 ---
 showonlyimage: true
 draft: false
-image: img/a4-paper.jpg
+image: img/doi/10.1016/j.ijmultiphaseflow.2020.103376.png
 date: 2016-11-05T18:25:22+05:30
 title: On the characteristics of Taylor bubbles in annular piping
 tags:

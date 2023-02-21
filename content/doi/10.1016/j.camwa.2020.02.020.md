@@ -1,7 +1,7 @@
 ---
 showonlyimage: true
 draft: false
-image: img/a4-paper.jpg
+image: img/doi/10.1016/j.camwa.2020.02.020.png
 date: 2016-11-05T18:25:22+05:30
 title: Open-loop optimal control of a flapping wing using an adjoint Lattice Boltzmann method
 tags:
